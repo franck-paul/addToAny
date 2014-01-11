@@ -22,6 +22,8 @@ if (is_null($core->blog->settings->addToAny->active)) {
 		$core->blog->settings->addToAny->put('before_content',false,'boolean','Display AddToAny sharing tool before content',false);
 		$core->blog->settings->addToAny->put('after_content',true,'boolean','Display AddToAny sharing tool after content',false);
 		$core->blog->settings->addToAny->put('style','','string','AddToAny sharing tool style',false);
+		$core->blog->settings->addToAny->put('prefix','','string','AddToAny sharing tool prefix text',false);
+		$core->blog->settings->addToAny->put('suffix','','string','AddToAny sharing tool suffix text',false);
 
 		$core->blog->triggerBlog();
 		http::redirect($p_url);
@@ -37,6 +39,8 @@ $ata_on_page = (boolean) $core->blog->settings->addToAny->on_page;
 $ata_before_content = (boolean) $core->blog->settings->addToAny->before_content;
 $ata_after_content = (boolean) $core->blog->settings->addToAny->after_content;
 $ata_style = $core->blog->settings->addToAny->style;
+$ata_prefix = $core->blog->settings->addToAny->prefix;
+$ata_suffix = $core->blog->settings->addToAny->suffix;
 
 if (!empty($_POST))
 {
@@ -48,6 +52,8 @@ if (!empty($_POST))
 		$ata_before_content = !empty($_POST['ata_before_content']);
 		$ata_after_content = !empty($_POST['ata_after_content']);
 		$ata_style = trim($_POST['ata_style']);
+		$ata_prefix = trim(html::escapeHTML($_POST['ata_prefix']));
+		$ata_suffix = trim(html::escapeHTML($_POST['ata_suffix']));
 
 		# Everything's fine, save options
 		$core->blog->settings->addNamespace('addToAny');
@@ -57,6 +63,8 @@ if (!empty($_POST))
 		$core->blog->settings->addToAny->put('before_content',$ata_before_content);
 		$core->blog->settings->addToAny->put('after_content',$ata_after_content);
 		$core->blog->settings->addToAny->put('style',$ata_style);
+		$core->blog->settings->addToAny->put('prefix',$ata_prefix);
+		$core->blog->settings->addToAny->put('suffix',$ata_suffix);
 
 		$core->blog->triggerBlog();
 
@@ -106,8 +114,16 @@ echo
 '<h3>'.__('Advanced options').'</h3>'.
 
 '<p class="area"><label for="ata_style">'.__('AddToAny sharing tool CSS style:').'</label> '.
-form::textarea('ata_style',30,8,html::escapeHTML($ata_style)).
-'</p>'.
+form::textarea('ata_style',30,8,html::escapeHTML($ata_style)).'</p>'.
+
+'<p><label for="ata_prefix">'.__('AddToAny sharing tool text prefix:').'</label> '.
+form::field('ata_prefix',30,128,html::escapeHTML($ata_prefix)).'</p>'.
+'<p class="form-note">'.__('This will be inserted before link.').'</p>'.
+
+'<p><label for="ata_suffix">'.__('AddToAny sharing tool text suffix:').'</label> '.
+form::field('ata_suffix',30,128,html::escapeHTML($ata_suffix)).'</p>'.
+'<p class="form-note">'.__('This will be inserted after link.').'</p>'.
+
 '<p class="form-note">'.__('The link will be inserted as <code>&lt;p class="a2a"&gt;&lt;a …&gt;&lt;img …&gt;&lt;/a&gt;&lt;/p&gt;</code> form.').'</p>'.
 
 '<p class="form-note">'.__('See <a href="http://www.addtoany.com/">AddToAny web site</a> for more information.').'</p>'.

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Dotclear 2 addToAny module\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-05 14:36+0100\n"
+"POT-Creation-Date: 2014-01-09 16:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,55 +16,71 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../hg-plugins/addToAny/_admin.php:16
+#: ../hg-plugins/addToAny//_admin.php:16
 msgid "Add AddToAny sharing tool to your posts and pages"
 msgstr ""
 
-#: ../hg-plugins/addToAny/_admin.php:16 ../hg-plugins/addToAny/_admin.php:18
-#: ../hg-plugins/addToAny/index.php:75 ../hg-plugins/addToAny/index.php:83
+#: ../hg-plugins/addToAny//_admin.php:16 ../hg-plugins/addToAny//_admin.php:18
+#: ../hg-plugins/addToAny//index.php:83 ../hg-plugins/addToAny//index.php:91
 msgid "AddToAny"
 msgstr ""
 
-#: ../hg-plugins/addToAny/_public.php:93
+#: ../hg-plugins/addToAny//_public.php:102
 msgid "Share"
 msgstr ""
 
-#: ../hg-plugins/addToAny/index.php:90
+#: ../hg-plugins/addToAny//index.php:98
 msgid "Active AddToAny"
 msgstr ""
 
-#: ../hg-plugins/addToAny/index.php:95
+#: ../hg-plugins/addToAny//index.php:103
 msgid "Automatically insert AddToAny sharing tool on posts"
 msgstr ""
 
-#: ../hg-plugins/addToAny/index.php:97
+#: ../hg-plugins/addToAny//index.php:105
 msgid "Automatically insert AddToAny sharing tool on pages"
 msgstr ""
 
-#: ../hg-plugins/addToAny/index.php:99
+#: ../hg-plugins/addToAny//index.php:107
 msgid "Position"
 msgstr ""
 
-#: ../hg-plugins/addToAny/index.php:102
+#: ../hg-plugins/addToAny//index.php:110
 msgid "Insert AddToAny sharing tool before content"
 msgstr ""
 
-#: ../hg-plugins/addToAny/index.php:104
+#: ../hg-plugins/addToAny//index.php:112
 msgid "Insert AddToAny sharing tool after content"
 msgstr ""
 
-#: ../hg-plugins/addToAny/index.php:106
+#: ../hg-plugins/addToAny//index.php:114
 msgid "Advanced options"
 msgstr ""
 
-#: ../hg-plugins/addToAny/index.php:108
+#: ../hg-plugins/addToAny//index.php:116
 msgid "AddToAny sharing tool CSS style:"
 msgstr ""
 
-#: ../hg-plugins/addToAny/index.php:111
-msgid "Le lien sera inséré sous la forme <code>&lt;p class=\"a2a\"&gt;&lt;a …&gt;&lt;img …&gt;&lt;/a&gt;&lt;/p&gt;</code>."
+#: ../hg-plugins/addToAny//index.php:119
+msgid "AddToAny sharing tool text prefix:"
 msgstr ""
 
-#: ../hg-plugins/addToAny/index.php:113
+#: ../hg-plugins/addToAny//index.php:121
+msgid "This will be inserted before link."
+msgstr ""
+
+#: ../hg-plugins/addToAny//index.php:123
+msgid "AddToAny sharing tool text suffix:"
+msgstr ""
+
+#: ../hg-plugins/addToAny//index.php:125
+msgid "This will be inserted after link."
+msgstr ""
+
+#: ../hg-plugins/addToAny//index.php:127
+msgid "The link will be inserted as <code>&lt;p class=\"a2a\"&gt;&lt;a …&gt;&lt;img …&gt;&lt;/a&gt;&lt;/p&gt;</code> form."
+msgstr ""
+
+#: ../hg-plugins/addToAny//index.php:129
 msgid "See <a href=\"http://www.addtoany.com/\">AddToAny web site</a> for more information."
 msgstr ""

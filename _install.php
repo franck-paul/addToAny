@@ -26,6 +26,8 @@ try
 	$core->blog->settings->addToAny->put('before_content',false,'boolean','Display AddToAny sharing tool before content',false,true);
 	$core->blog->settings->addToAny->put('after_content',true,'boolean','Display AddToAny sharing tool after content',false,true);
 	$core->blog->settings->addToAny->put('style','','string','AddToAny sharing tool style',false,true);
+	$core->blog->settings->addToAny->put('prefix','','string','AddToAny sharing tool prefix text',false,true);
+	$core->blog->settings->addToAny->put('suffix','','string','AddToAny sharing tool suffix text',false,true);
 
 	$core->setVersion('addToAny',$new_version);
 

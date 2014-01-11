@@ -33,7 +33,10 @@ class dcAddToAny
 				($_ctx->posts->post_type == 'page' && $core->blog->settings->addToAny->on_page))
 			{
 				if ($core->blog->settings->addToAny->before_content) {
-					echo self::addToAny($_ctx->posts->getURL(),$_ctx->posts->post_title,!$a2a_loaded);
+					echo self::addToAny(
+						$_ctx->posts->getURL(),$_ctx->posts->post_title,!$a2a_loaded,
+						$core->blog->settings->addToAny->prefix,
+						$core->blog->settings->addToAny->suffix);
 					$a2a_loaded = true;
 				}
 			}
@@ -50,7 +53,10 @@ class dcAddToAny
 				($_ctx->posts->post_type == 'page' && $core->blog->settings->addToAny->on_page))
 			{
 				if ($core->blog->settings->addToAny->after_content) {
-					echo self::addToAny($_ctx->posts->getURL(),$_ctx->posts->post_title,!$a2a_loaded);
+					echo self::addToAny(
+						$_ctx->posts->getURL(),$_ctx->posts->post_title,!$a2a_loaded,
+						$core->blog->settings->addToAny->prefix,
+						$core->blog->settings->addToAny->suffix);
 					$a2a_loaded = true;
 				}
 			}
@@ -66,7 +72,10 @@ class dcAddToAny
 		if ($core->blog->settings->addToAny->active) {
 			$f = $this->getFilters($attr);
 			$url = sprintf($f,$_ctx->posts->getURL());
-			$ret = self::addToAny($url,$_ctx->posts->post_title,!$a2a_loaded);
+			$ret = self::addToAny(
+				$url,$_ctx->posts->post_title,!$a2a_loaded,
+				$core->blog->settings->addToAny->prefix,
+				$core->blog->settings->addToAny->suffix);
 			$a2a_loaded = true;
 		}
 		return $ret;
@@ -85,13 +94,13 @@ class dcAddToAny
 
 	// Helpers
 
-	public static function addToAny($url,$label,$first=true)
+	public static function addToAny($url,$label,$first=true,$prefix,$suffix)
 	{
 		$ret =
-			'<p class="a2a"><a class="a2a_dd" href="http://www.addtoany.com/share_save">'."\n".
+			'<p class="a2a">'.($prefix !== null ? $prefix.' ' : '').'<a class="a2a_dd" href="http://www.addtoany.com/share_save">'."\n".
 				'<img src="'.html::stripHostURL($GLOBALS['core']->blog->getQmarkURL().
 					'pf=addToAny/img/favicon.png').'" border="0" alt="'.__('Share').'"/>'."\n".
-			'</a></p>'."\n";
+			'</a>'.($suffix !== null ? ' '.$suffix : '').'</p>'."\n";
 		if ($first) {
 			$ret .=
 				'<script type="text/javascript">'."\n".
