@@ -105,7 +105,7 @@ class dcAddToAny
 			$ret .=
 				'<script type="text/javascript">'."\n".
 					'a2a_config = {'."\n".
-						'linkname: \''.$label.'\','."\n".
+						'linkname: \''.addslashes($label).'\','."\n".
 						'linkurl: \''.$url.'\','."\n".
 						'onclick: 1,'."\n".
 						'num_services: 10,'."\n".
@@ -116,7 +116,7 @@ class dcAddToAny
 		} else {
 			$ret .=
 				'<script type="text/javascript">'."\n".
-					'a2a_config.linkname = \''.$label.'\';'."\n".
+					'a2a_config.linkname = \''.addslashes($label).'\';'."\n".
 					'a2a_config.linkurl = \''.$url.'\';'."\n".
 					'a2a.init(\'page\');'."\n".
 				'</script>'."\n";
