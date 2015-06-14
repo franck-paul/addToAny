@@ -70,7 +70,7 @@ class dcAddToAny
 
 		$ret = '';
 		if ($core->blog->settings->addToAny->active) {
-			$f = $this->getFilters($attr);
+			$f = $core->tpl->getFilters($attr);
 			$url = sprintf($f,$_ctx->posts->getURL());
 			$ret = self::addToAny(
 				$url,$_ctx->posts->post_title,!$a2a_loaded,

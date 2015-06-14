@@ -16,7 +16,7 @@ $this->registerModule(
 	/* Name */				"AddToAny",
 	/* Description*/		"Add AddToAny sharing tool to your posts and pages",
 	/* Author */			"Franck Paul",
-	/* Version */			'0.2.2',
+	/* Version */			'0.2.3',
 	array(
 		/* Permissions */	'permissions' =>	'admin',
 		/* Type */			'type' =>			'plugin'
