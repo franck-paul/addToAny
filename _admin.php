@@ -15,6 +15,6 @@ if (!defined('DC_CONTEXT_ADMIN')) { return; }
 // dead but useful code, in order to have translations
 __('AddToAny').__('Add AddToAny sharing tool to your posts and pages');
 
-$_menu['Blog']->addItem(__('AddToAny'),'plugin.php?p=addToAny','index.php?pf=addToAny/icon.png',
+$_menu['Blog']->addItem(__('AddToAny'),'plugin.php?p=addToAny',urldecode(dcPage::getPF('addToAny/icon.png')),
 		preg_match('/plugin.php\?p=addToAny(&.*)?$/',$_SERVER['REQUEST_URI']),
 		$core->auth->check('admin',$core->blog->id));

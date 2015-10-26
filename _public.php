@@ -99,7 +99,7 @@ class dcAddToAny
 		$ret =
 			'<p class="a2a">'.($prefix !== null ? $prefix.' ' : '').'<a class="a2a_dd" href="http://www.addtoany.com/share_save">'."\n".
 				'<img src="'.html::stripHostURL($GLOBALS['core']->blog->getQmarkURL().
-					'pf=addToAny/img/favicon.png').'" alt="'.__('Share').'"/>'."\n".
+					urldecode(dcPage::getPF('addToAny/img/favicon.png'))).'" alt="'.__('Share').'"/>'."\n".
 			'</a>'.($suffix !== null ? ' '.$suffix : '').'</p>'."\n";
 		if ($first) {
 			$ret .=
