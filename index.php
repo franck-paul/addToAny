@@ -126,7 +126,7 @@ form::field('ata_suffix',30,128,html::escapeHTML($ata_suffix)).'</p>'.
 
 '<p class="form-note">'.__('The link will be inserted as <code>&lt;p class="a2a"&gt;&lt;a …&gt;&lt;img …&gt;&lt;/a&gt;&lt;/p&gt;</code> form.').'</p>'.
 
-'<p class="form-note">'.__('See <a href="http://www.addtoany.com/">AddToAny web site</a> for more information.').'</p>'.
+'<p class="form-note">'.__('See <a href="https://www.addtoany.com/">AddToAny web site</a> for more information.').'</p>'.
 
 '<p>'.$core->formNonce().'<input type="submit" value="'.__('Save').'" /></p>'.
 '</form>';

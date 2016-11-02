@@ -64,5 +64,5 @@ msgstr "Sera précédé d'une espace si non vide."
 msgid "The link will be inserted as <code>&lt;p class=\"a2a\"&gt;&lt;a …&gt;&lt;img …&gt;&lt;/a&gt;&lt;/p&gt;</code> form."
 msgstr "Le lien sera inséré sous la forme <code>&lt;p class=\"a2a\"&gt;&lt;a …&gt;&lt;img …&gt;&lt;/a&gt;&lt;/p&gt;</code>."
 
-msgid "See <a href=\"http://www.addtoany.com/\">AddToAny web site</a> for more information."
-msgstr "Voir <a href=\"http://www.addtoany.com/\">le site web AddToAny</a> pour plus d'informations."
+msgid "See <a href=\"https://www.addtoany.com/\">AddToAny web site</a> for more information."
+msgstr "Voir <a href=\"https://www.addtoany.com/\">le site web AddToAny</a> pour plus d'informations."

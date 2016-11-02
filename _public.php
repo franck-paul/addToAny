@@ -97,7 +97,7 @@ class dcAddToAny
 	public static function addToAny($url,$label,$first=true,$prefix,$suffix)
 	{
 		$ret =
-			'<p class="a2a">'.($prefix !== null ? $prefix.' ' : '').'<a class="a2a_dd" href="http://www.addtoany.com/share_save">'."\n".
+			'<p class="a2a">'.($prefix !== null ? $prefix.' ' : '').'<a class="a2a_dd" href="https://www.addtoany.com/share_save">'."\n".
 				'<img src="'.html::stripHostURL($GLOBALS['core']->blog->getQmarkURL().
 					urldecode(dcPage::getPF('addToAny/img/favicon.png'))).'" alt="'.__('Share').'"/>'."\n".
 			'</a>'.($suffix !== null ? ' '.$suffix : '').'</p>'."\n";
@@ -112,7 +112,7 @@ class dcAddToAny
 						'show_title: 1'."\n".
 					'};'."\n".
 				'</script>'."\n".
-				'<script type="text/javascript" src="http://static.addtoany.com/menu/page.js"></script>'."\n";
+				'<script type="text/javascript" src="https://static.addtoany.com/menu/page.js"></script>'."\n";
 		} else {
 			$ret .=
 				'<script type="text/javascript">'."\n".
