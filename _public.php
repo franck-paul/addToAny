@@ -13,12 +13,12 @@
 
 if (!defined('DC_RC_PATH')) {return;}
 
-$core->addBehavior('publicHeadContent', ['dcAddToAny', 'publicHeadContent']);
+$core->addBehavior('publicHeadContent', array('dcAddToAny', 'publicHeadContent'));
 
-$core->addBehavior('publicEntryBeforeContent', ['dcAddToAny', 'publicEntryBeforeContent']);
-$core->addBehavior('publicEntryAfterContent', ['dcAddToAny', 'publicEntryAfterContent']);
+$core->addBehavior('publicEntryBeforeContent', array('dcAddToAny', 'publicEntryBeforeContent'));
+$core->addBehavior('publicEntryAfterContent', array('dcAddToAny', 'publicEntryAfterContent'));
 
-$core->tpl->addValue('AddToAny', ['dcAddToAny', 'tplAddToAny']);
+$core->tpl->addValue('AddToAny', array('dcAddToAny', 'tplAddToAny'));
 
 global $a2a_loaded;
 

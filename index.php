@@ -83,10 +83,10 @@ if (!empty($_POST)) {
 <body>
 <?php
 echo dcPage::breadcrumb(
-    [
+    array(
         html::escapeHTML($core->blog->name) => '',
         __('AddToAny')                      => ''
-    ]);
+    ));
 echo dcPage::notices();
 
 echo
