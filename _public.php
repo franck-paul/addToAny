@@ -101,7 +101,7 @@ class dcAddToAny
             '</a>' . ($suffix !== null ? ' ' . $suffix : '') . '</p>' . "\n";
         if ($first) {
             $ret .=
-            '<script type="text/javascript">' . "\n" .
+            '<script>' . "\n" .
             'a2a_config = {' . "\n" .
             'linkname: \'' . addslashes($label) . '\',' . "\n" .
                 'linkurl: \'' . $url . '\',' . "\n" .
@@ -110,10 +110,10 @@ class dcAddToAny
                 'show_title: 1' . "\n" .
                 '};' . "\n" .
                 '</script>' . "\n" .
-                '<script type="text/javascript" src="https://static.addtoany.com/menu/page.js"></script>' . "\n";
+                '<script src="https://static.addtoany.com/menu/page.js"></script>' . "\n";
         } else {
             $ret .=
-            '<script type="text/javascript">' . "\n" .
+            '<script>' . "\n" .
             'a2a_config.linkname = \'' . addslashes($label) . '\';' . "\n" .
                 'a2a_config.linkurl = \'' . $url . '\';' . "\n" .
                 'a2a.init(\'page\');' . "\n" .
