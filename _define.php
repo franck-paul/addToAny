@@ -28,6 +28,6 @@ $this->registerModule(
 
         'details'    => 'https://open-time.net/?q=addToAny',       // Details URL
         'support'    => 'https://github.com/franck-paul/addToAny', // Support URL
-        'repository' => 'https://raw.githubusercontent.com/franck-paul/addToAny/main/dcstore.xml'
+        'repository' => 'https://raw.githubusercontent.com/franck-paul/addToAny/master/dcstore.xml'
     ]
 );
