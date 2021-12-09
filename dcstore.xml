@@ -1,8 +1,8 @@
 <modules xmlns:da="http://dotaddict.org/da/">
   <module id="addToAny">
-    <name>Add AddToAny sharing tool to your posts and pages</name>
+    <name>AddToAny</name>
     <version>0.4</version>
-    <author>Add AddToAny sharing tool to your posts and pages</author>
+    <author>Franck Paul</author>
     <desc>Add AddToAny sharing tool to your posts and pages</desc>
     <file>https://github.com/franck-paul/addToAny/releases/download/0.4/plugin-addToAny-0.4.zip</file>
     <da:dcmin>2.13</da:dcmin>
