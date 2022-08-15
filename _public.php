@@ -10,34 +10,34 @@
  * @copyright Franck Paul carnet.franck.paul@gmail.com
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
+if (!defined('DC_RC_PATH')) {
+    return;
+}
 
-if (!defined('DC_RC_PATH')) {return;}
+dcCore::app()->addBehavior('publicHeadContent', ['dcAddToAny', 'publicHeadContent']);
 
-$core->addBehavior('publicHeadContent', array('dcAddToAny', 'publicHeadContent'));
+dcCore::app()->addBehavior('publicEntryBeforeContent', ['dcAddToAny', 'publicEntryBeforeContent']);
+dcCore::app()->addBehavior('publicEntryAfterContent', ['dcAddToAny', 'publicEntryAfterContent']);
 
-$core->addBehavior('publicEntryBeforeContent', array('dcAddToAny', 'publicEntryBeforeContent'));
-$core->addBehavior('publicEntryAfterContent', array('dcAddToAny', 'publicEntryAfterContent'));
-
-$core->tpl->addValue('AddToAny', array('dcAddToAny', 'tplAddToAny'));
-
-global $a2a_loaded;
+dcCore::app()->tpl->addValue('AddToAny', ['dcAddToAny', 'tplAddToAny']);
 
 class dcAddToAny
 {
+    private static $a2a_loaded = false;
+
     public static function publicEntryBeforeContent($core, $_ctx)
     {
-        global $a2a_loaded;
-
-        $ret = '';
-        if ($core->blog->settings->addToAny->active) {
-            if (($_ctx->posts->post_type == 'post' && $core->blog->settings->addToAny->on_post) ||
-                ($_ctx->posts->post_type == 'page' && $core->blog->settings->addToAny->on_page)) {
-                if ($core->blog->settings->addToAny->before_content) {
+        if (dcCore::app()->blog->settings->addToAny->active) {
+            if ((dcCore::app()->ctx->posts->post_type == 'post' && dcCore::app()->blog->settings->addToAny->on_post) || (dcCore::app()->ctx->posts->post_type == 'page' && dcCore::app()->blog->settings->addToAny->on_page)) {
+                if (dcCore::app()->blog->settings->addToAny->before_content) {
                     echo self::addToAny(
-                        $_ctx->posts->getURL(), $_ctx->posts->post_title, !$a2a_loaded,
-                        $core->blog->settings->addToAny->prefix,
-                        $core->blog->settings->addToAny->suffix);
-                    $a2a_loaded = true;
+                        dcCore::app()->ctx->posts->getURL(),
+                        dcCore::app()->ctx->posts->post_title,
+                        !self::$a2a_loaded,
+                        dcCore::app()->blog->settings->addToAny->prefix,
+                        dcCore::app()->blog->settings->addToAny->suffix
+                    );
+                    self::$a2a_loaded = true;
                 }
             }
         }
@@ -45,18 +45,17 @@ class dcAddToAny
 
     public static function publicEntryAfterContent($core, $_ctx)
     {
-        global $a2a_loaded;
-
-        $ret = '';
-        if ($core->blog->settings->addToAny->active) {
-            if (($_ctx->posts->post_type == 'post' && $core->blog->settings->addToAny->on_post) ||
-                ($_ctx->posts->post_type == 'page' && $core->blog->settings->addToAny->on_page)) {
-                if ($core->blog->settings->addToAny->after_content) {
+        if (dcCore::app()->blog->settings->addToAny->active) {
+            if ((dcCore::app()->ctx->posts->post_type == 'post' && dcCore::app()->blog->settings->addToAny->on_post) || (dcCore::app()->ctx->posts->post_type == 'page' && dcCore::app()->blog->settings->addToAny->on_page)) {
+                if (dcCore::app()->blog->settings->addToAny->after_content) {
                     echo self::addToAny(
-                        $_ctx->posts->getURL(), $_ctx->posts->post_title, !$a2a_loaded,
-                        $core->blog->settings->addToAny->prefix,
-                        $core->blog->settings->addToAny->suffix);
-                    $a2a_loaded = true;
+                        dcCore::app()->ctx->posts->getURL(),
+                        dcCore::app()->ctx->posts->post_title,
+                        !self::$a2a_loaded,
+                        dcCore::app()->blog->settings->addToAny->prefix,
+                        dcCore::app()->blog->settings->addToAny->suffix
+                    );
+                    self::$a2a_loaded = true;
                 }
             }
         }
@@ -64,44 +63,41 @@ class dcAddToAny
 
     public static function tplAddToAny($attr)
     {
-        global $core, $_ctx;
-        global $a2a_loaded;
-
         $ret = '';
-        if ($core->blog->settings->addToAny->active) {
-            $f   = $core->tpl->getFilters($attr);
-            $url = sprintf($f, $_ctx->posts->getURL());
+        if (dcCore::app()->blog->settings->addToAny->active) {
+            $f   = dcCore::app()->tpl->getFilters($attr);
+            $url = sprintf($f, dcCore::app()->ctx->posts->getURL());
             $ret = self::addToAny(
-                $url, $_ctx->posts->post_title, !$a2a_loaded,
-                $core->blog->settings->addToAny->prefix,
-                $core->blog->settings->addToAny->suffix);
-            $a2a_loaded = true;
+                $url,
+                dcCore::app()->ctx->posts->post_title,
+                !self::$a2a_loaded,
+                dcCore::app()->blog->settings->addToAny->prefix,
+                dcCore::app()->blog->settings->addToAny->suffix
+            );
+            self::$a2a_loaded = true;
         }
+
         return $ret;
     }
 
     public static function publicHeadContent()
     {
-        global $core;
-
-        $core->blog->settings->addNamespace('addToAny');
-        if (($core->blog->settings->addToAny->active) && ($core->blog->settings->addToAny->style !== null)) {
+        dcCore::app()->blog->settings->addNamespace('addToAny');
+        if ((dcCore::app()->blog->settings->addToAny->active) && (dcCore::app()->blog->settings->addToAny->style !== null)) {
             echo '<style type="text/css">' . "\n" . self::customStyle() . "</style>\n";
         }
     }
 
     // Helpers
 
-    public static function addToAny($url, $label, $first = true, $prefix, $suffix)
+    public static function addToAny($url, $label, $first = true, $prefix = null, $suffix = null)
     {
-        $ret =
-        '<p class="a2a">' . ($prefix !== null ? $prefix . ' ' : '') .
+        $ret = '<p class="a2a">' . ($prefix !== null ? $prefix . ' ' : '') .
         '<a class="a2a_dd" href="https://www.addtoany.com/share_save">' . "\n" .
-        '<img src="' . urldecode($GLOBALS['core']->blog->getPF('addToAny/img/favicon.png')) . '" alt="' . __('Share') . '"/>' . "\n" .
+        '<img src="' . urldecode(dcCore::app()->blog->getPF('addToAny/img/favicon.png')) . '" alt="' . __('Share') . '"/>' . "\n" .
             '</a>' . ($suffix !== null ? ' ' . $suffix : '') . '</p>' . "\n";
         if ($first) {
-            $ret .=
-            '<script>' . "\n" .
+            $ret .= '<script>' . "\n" .
             'a2a_config = {' . "\n" .
             'linkname: \'' . addslashes($label) . '\',' . "\n" .
                 'linkurl: \'' . $url . '\',' . "\n" .
@@ -112,22 +108,23 @@ class dcAddToAny
                 '</script>' . "\n" .
                 '<script src="https://static.addtoany.com/menu/page.js"></script>' . "\n";
         } else {
-            $ret .=
-            '<script>' . "\n" .
+            $ret .= '<script>' . "\n" .
             'a2a_config.linkname = \'' . addslashes($label) . '\';' . "\n" .
                 'a2a_config.linkurl = \'' . $url . '\';' . "\n" .
                 'a2a.init(\'page\');' . "\n" .
                 '</script>' . "\n";
         }
+
         return $ret;
     }
 
     public static function customStyle()
     {
-        $s = $GLOBALS['core']->blog->settings->addToAny->style;
+        $s = dcCore::app()->blog->settings->addToAny->style;
         if ($s === null) {
             return;
         }
+
         return $s . "\n";
     }
 }

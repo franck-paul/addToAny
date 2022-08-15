@@ -18,9 +18,9 @@ $this->registerModule(
     'AddToAny',                                          // Name
     'Add AddToAny sharing tool to your posts and pages', // Description
     'Franck Paul',                                       // Author
-    '0.4',                                               // Version
+    '0.5',
     [
-        'requires'    => [['core', '2.13']],                        // Dependencies
+        'requires'    => [['core', '2.23']],                        // Dependencies
         'permissions' => 'admin',                                   // Permissions
         'type'        => 'plugin',                                  // Type
         'settings'    => [// Settings
@@ -28,6 +28,6 @@ $this->registerModule(
 
         'details'    => 'https://open-time.net/?q=addToAny',       // Details URL
         'support'    => 'https://github.com/franck-paul/addToAny', // Support URL
-        'repository' => 'https://raw.githubusercontent.com/franck-paul/addToAny/master/dcstore.xml'
+        'repository' => 'https://raw.githubusercontent.com/franck-paul/addToAny/master/dcstore.xml',
     ]
 );

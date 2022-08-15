@@ -10,67 +10,67 @@
  * @copyright Franck Paul carnet.franck.paul@gmail.com
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
+if (!defined('DC_CONTEXT_ADMIN')) {
+    return;
+}
 
-if (!defined('DC_CONTEXT_ADMIN')) {return;}
-
-$core->blog->settings->addNamespace('addToAny');
-if (is_null($core->blog->settings->addToAny->active)) {
+dcCore::app()->blog->settings->addNamespace('addToAny');
+if (is_null(dcCore::app()->blog->settings->addToAny->active)) {
     try {
         // Add default settings values if necessary
-        $core->blog->settings->addToAny->put('active', false, 'boolean', 'Active', false);
-        $core->blog->settings->addToAny->put('on_post', true, 'boolean', 'Show AddToAny sharing tool on post', false);
-        $core->blog->settings->addToAny->put('on_page', false, 'boolean', 'Show AddToAny sharing tool on post', false);
-        $core->blog->settings->addToAny->put('before_content', false, 'boolean', 'Display AddToAny sharing tool before content', false);
-        $core->blog->settings->addToAny->put('after_content', true, 'boolean', 'Display AddToAny sharing tool after content', false);
-        $core->blog->settings->addToAny->put('style', '', 'string', 'AddToAny sharing tool style', false);
-        $core->blog->settings->addToAny->put('prefix', '', 'string', 'AddToAny sharing tool prefix text', false);
-        $core->blog->settings->addToAny->put('suffix', '', 'string', 'AddToAny sharing tool suffix text', false);
+        dcCore::app()->blog->settings->addToAny->put('active', false, 'boolean', 'Active', false);
+        dcCore::app()->blog->settings->addToAny->put('on_post', true, 'boolean', 'Show AddToAny sharing tool on post', false);
+        dcCore::app()->blog->settings->addToAny->put('on_page', false, 'boolean', 'Show AddToAny sharing tool on post', false);
+        dcCore::app()->blog->settings->addToAny->put('before_content', false, 'boolean', 'Display AddToAny sharing tool before content', false);
+        dcCore::app()->blog->settings->addToAny->put('after_content', true, 'boolean', 'Display AddToAny sharing tool after content', false);
+        dcCore::app()->blog->settings->addToAny->put('style', '', 'string', 'AddToAny sharing tool style', false);
+        dcCore::app()->blog->settings->addToAny->put('prefix', '', 'string', 'AddToAny sharing tool prefix text', false);
+        dcCore::app()->blog->settings->addToAny->put('suffix', '', 'string', 'AddToAny sharing tool suffix text', false);
 
-        $core->blog->triggerBlog();
+        dcCore::app()->blog->triggerBlog();
         http::redirect($p_url);
     } catch (Exception $e) {
-        $core->error->add($e->getMessage());
+        dcCore::app()->error->add($e->getMessage());
     }
 }
 
-$ata_active         = (boolean) $core->blog->settings->addToAny->active;
-$ata_on_post        = (boolean) $core->blog->settings->addToAny->on_post;
-$ata_on_page        = (boolean) $core->blog->settings->addToAny->on_page;
-$ata_before_content = (boolean) $core->blog->settings->addToAny->before_content;
-$ata_after_content  = (boolean) $core->blog->settings->addToAny->after_content;
-$ata_style          = $core->blog->settings->addToAny->style;
-$ata_prefix         = $core->blog->settings->addToAny->prefix;
-$ata_suffix         = $core->blog->settings->addToAny->suffix;
+$ata_active         = (bool) dcCore::app()->blog->settings->addToAny->active;
+$ata_on_post        = (bool) dcCore::app()->blog->settings->addToAny->on_post;
+$ata_on_page        = (bool) dcCore::app()->blog->settings->addToAny->on_page;
+$ata_before_content = (bool) dcCore::app()->blog->settings->addToAny->before_content;
+$ata_after_content  = (bool) dcCore::app()->blog->settings->addToAny->after_content;
+$ata_style          = dcCore::app()->blog->settings->addToAny->style;
+$ata_prefix         = dcCore::app()->blog->settings->addToAny->prefix;
+$ata_suffix         = dcCore::app()->blog->settings->addToAny->suffix;
 
 if (!empty($_POST)) {
-    try
-    {
+    try {
         $ata_active         = !empty($_POST['ata_active']);
         $ata_on_post        = !empty($_POST['ata_on_post']);
         $ata_on_page        = !empty($_POST['ata_on_page']);
         $ata_before_content = !empty($_POST['ata_before_content']);
         $ata_after_content  = !empty($_POST['ata_after_content']);
-        $ata_style          = trim($_POST['ata_style']);
+        $ata_style          = trim((string) $_POST['ata_style']);
         $ata_prefix         = trim(html::escapeHTML($_POST['ata_prefix']));
         $ata_suffix         = trim(html::escapeHTML($_POST['ata_suffix']));
 
         # Everything's fine, save options
-        $core->blog->settings->addNamespace('addToAny');
-        $core->blog->settings->addToAny->put('active', $ata_active);
-        $core->blog->settings->addToAny->put('on_post', $ata_on_post);
-        $core->blog->settings->addToAny->put('on_page', $ata_on_page);
-        $core->blog->settings->addToAny->put('before_content', $ata_before_content);
-        $core->blog->settings->addToAny->put('after_content', $ata_after_content);
-        $core->blog->settings->addToAny->put('style', $ata_style);
-        $core->blog->settings->addToAny->put('prefix', $ata_prefix);
-        $core->blog->settings->addToAny->put('suffix', $ata_suffix);
+        dcCore::app()->blog->settings->addNamespace('addToAny');
+        dcCore::app()->blog->settings->addToAny->put('active', $ata_active);
+        dcCore::app()->blog->settings->addToAny->put('on_post', $ata_on_post);
+        dcCore::app()->blog->settings->addToAny->put('on_page', $ata_on_page);
+        dcCore::app()->blog->settings->addToAny->put('before_content', $ata_before_content);
+        dcCore::app()->blog->settings->addToAny->put('after_content', $ata_after_content);
+        dcCore::app()->blog->settings->addToAny->put('style', $ata_style);
+        dcCore::app()->blog->settings->addToAny->put('prefix', $ata_prefix);
+        dcCore::app()->blog->settings->addToAny->put('suffix', $ata_suffix);
 
-        $core->blog->triggerBlog();
+        dcCore::app()->blog->triggerBlog();
 
         dcPage::addSuccessNotice(__('Settings have been successfully updated.'));
         http::redirect($p_url);
     } catch (Exception $e) {
-        $core->error->add($e->getMessage());
+        dcCore::app()->error->add($e->getMessage());
     }
 }
 
@@ -83,10 +83,11 @@ if (!empty($_POST)) {
 <body>
 <?php
 echo dcPage::breadcrumb(
-    array(
-        html::escapeHTML($core->blog->name) => '',
-        __('AddToAny')                      => ''
-    ));
+    [
+        html::escapeHTML(dcCore::app()->blog->name) => '',
+        __('AddToAny')                              => '',
+    ]
+);
 echo dcPage::notices();
 
 echo
@@ -125,7 +126,7 @@ form::field('ata_suffix', 30, 128, html::escapeHTML($ata_suffix)) . '</p>' .
 
 '<p class="form-note">' . __('See <a href="https://www.addtoany.com/">AddToAny web site</a> for more information.') . '</p>' .
 
-'<p>' . $core->formNonce() . '<input type="submit" value="' . __('Save') . '" /></p>' .
+'<p>' . dcCore::app()->formNonce() . '<input type="submit" value="' . __('Save') . '" /></p>' .
     '</form>';
 
 ?>
