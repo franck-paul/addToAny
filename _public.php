@@ -14,18 +14,11 @@ if (!defined('DC_RC_PATH')) {
     return;
 }
 
-dcCore::app()->addBehavior('publicHeadContent', ['dcAddToAny', 'publicHeadContent']);
-
-dcCore::app()->addBehavior('publicEntryBeforeContent', ['dcAddToAny', 'publicEntryBeforeContent']);
-dcCore::app()->addBehavior('publicEntryAfterContent', ['dcAddToAny', 'publicEntryAfterContent']);
-
-dcCore::app()->tpl->addValue('AddToAny', ['dcAddToAny', 'tplAddToAny']);
-
 class dcAddToAny
 {
     private static $a2a_loaded = false;
 
-    public static function publicEntryBeforeContent($core, $_ctx)
+    public static function publicEntryBeforeContent()
     {
         if (dcCore::app()->blog->settings->addToAny->active) {
             if ((dcCore::app()->ctx->posts->post_type == 'post' && dcCore::app()->blog->settings->addToAny->on_post) || (dcCore::app()->ctx->posts->post_type == 'page' && dcCore::app()->blog->settings->addToAny->on_page)) {
@@ -43,7 +36,7 @@ class dcAddToAny
         }
     }
 
-    public static function publicEntryAfterContent($core, $_ctx)
+    public static function publicEntryAfterContent()
     {
         if (dcCore::app()->blog->settings->addToAny->active) {
             if ((dcCore::app()->ctx->posts->post_type == 'post' && dcCore::app()->blog->settings->addToAny->on_post) || (dcCore::app()->ctx->posts->post_type == 'page' && dcCore::app()->blog->settings->addToAny->on_page)) {
@@ -128,3 +121,10 @@ class dcAddToAny
         return $s . "\n";
     }
 }
+
+dcCore::app()->addBehavior('publicHeadContent', [dcAddToAny::class, 'publicHeadContent']);
+
+dcCore::app()->addBehavior('publicEntryBeforeContent', [dcAddToAny::class, 'publicEntryBeforeContent']);
+dcCore::app()->addBehavior('publicEntryAfterContent', [dcAddToAny::class, 'publicEntryAfterContent']);
+
+dcCore::app()->tpl->addValue('AddToAny', [dcAddToAny::class, 'tplAddToAny']);

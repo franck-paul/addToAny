@@ -15,19 +15,21 @@ if (!defined('DC_RC_PATH')) {
 }
 
 $this->registerModule(
-    'AddToAny',                                          // Name
-    'Add AddToAny sharing tool to your posts and pages', // Description
-    'Franck Paul',                                       // Author
-    '0.5',
+    'AddToAny',
+    'Add AddToAny sharing tool to your posts and pages',
+    'Franck Paul',
+    '0.6',
     [
-        'requires'    => [['core', '2.23']],                        // Dependencies
-        'permissions' => 'admin',                                   // Permissions
-        'type'        => 'plugin',                                  // Type
-        'settings'    => [// Settings
+        'requires'    => [['core', '2.24']],
+        'permissions' => dcCore::app()->auth->makePermissions([
+            dcAuth::PERMISSION_ADMIN,
+        ]),
+        'type'     => 'plugin',
+        'settings' => [// Settings
         ],
 
-        'details'    => 'https://open-time.net/?q=addToAny',       // Details URL
-        'support'    => 'https://github.com/franck-paul/addToAny', // Support URL
+        'details'    => 'https://open-time.net/?q=addToAny',
+        'support'    => 'https://github.com/franck-paul/addToAny',
         'repository' => 'https://raw.githubusercontent.com/franck-paul/addToAny/master/dcstore.xml',
     ]
 );
