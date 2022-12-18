@@ -28,7 +28,7 @@ if (is_null(dcCore::app()->blog->settings->addToAny->active)) {
         dcCore::app()->blog->settings->addToAny->put('suffix', '', 'string', 'AddToAny sharing tool suffix text', false);
 
         dcCore::app()->blog->triggerBlog();
-        http::redirect($p_url);
+        http::redirect(dcCore::app()->admin->getPageURL());
     } catch (Exception $e) {
         dcCore::app()->error->add($e->getMessage());
     }
@@ -68,7 +68,7 @@ if (!empty($_POST)) {
         dcCore::app()->blog->triggerBlog();
 
         dcPage::addSuccessNotice(__('Settings have been successfully updated.'));
-        http::redirect($p_url);
+        http::redirect(dcCore::app()->admin->getPageURL());
     } catch (Exception $e) {
         dcCore::app()->error->add($e->getMessage());
     }
@@ -91,7 +91,7 @@ echo dcPage::breadcrumb(
 echo dcPage::notices();
 
 echo
-'<form action="' . $p_url . '" method="post">' .
+'<form action="' . dcCore::app()->admin->getPageURL() . '" method="post">' .
 '<p>' . form::checkbox('ata_active', 1, $ata_active) . ' ' .
 '<label for="ata_active" class="classic">' . __('Active AddToAny') . '</label></p>' .
 

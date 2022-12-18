@@ -14,10 +14,7 @@ if (!defined('DC_CONTEXT_ADMIN')) {
     return;
 }
 
-$new_version = dcCore::app()->plugins->moduleInfo('addToAny', 'version');
-$old_version = dcCore::app()->getVersion('addToAny');
-
-if (version_compare((string) $old_version, $new_version, '>=')) {
+if (!dcCore::app()->newVersion(basename(__DIR__), dcCore::app()->plugins->moduleInfo(basename(__DIR__), 'version'))) {
     return;
 }
 
@@ -31,8 +28,6 @@ try {
     dcCore::app()->blog->settings->addToAny->put('style', '', 'string', 'AddToAny sharing tool style', false, true);
     dcCore::app()->blog->settings->addToAny->put('prefix', '', 'string', 'AddToAny sharing tool prefix text', false, true);
     dcCore::app()->blog->settings->addToAny->put('suffix', '', 'string', 'AddToAny sharing tool suffix text', false, true);
-
-    dcCore::app()->setVersion('addToAny', $new_version);
 
     return true;
 } catch (Exception $e) {
