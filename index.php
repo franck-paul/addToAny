@@ -10,11 +10,14 @@
  * @copyright Franck Paul carnet.franck.paul@gmail.com
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
+
+use Dotclear\Helper\Html\Html;
+use Dotclear\Helper\Network\Http;
+
 if (!defined('DC_CONTEXT_ADMIN')) {
     return;
 }
 
-dcCore::app()->blog->settings->addNamespace('addToAny');
 if (is_null(dcCore::app()->blog->settings->addToAny->active)) {
     try {
         // Add default settings values if necessary
@@ -28,7 +31,7 @@ if (is_null(dcCore::app()->blog->settings->addToAny->active)) {
         dcCore::app()->blog->settings->addToAny->put('suffix', '', 'string', 'AddToAny sharing tool suffix text', false);
 
         dcCore::app()->blog->triggerBlog();
-        http::redirect(dcCore::app()->admin->getPageURL());
+        Http::redirect(dcCore::app()->admin->getPageURL());
     } catch (Exception $e) {
         dcCore::app()->error->add($e->getMessage());
     }
@@ -51,11 +54,10 @@ if (!empty($_POST)) {
         $ata_before_content = !empty($_POST['ata_before_content']);
         $ata_after_content  = !empty($_POST['ata_after_content']);
         $ata_style          = trim((string) $_POST['ata_style']);
-        $ata_prefix         = trim(html::escapeHTML($_POST['ata_prefix']));
-        $ata_suffix         = trim(html::escapeHTML($_POST['ata_suffix']));
+        $ata_prefix         = trim(Html::escapeHTML($_POST['ata_prefix']));
+        $ata_suffix         = trim(Html::escapeHTML($_POST['ata_suffix']));
 
         # Everything's fine, save options
-        dcCore::app()->blog->settings->addNamespace('addToAny');
         dcCore::app()->blog->settings->addToAny->put('active', $ata_active);
         dcCore::app()->blog->settings->addToAny->put('on_post', $ata_on_post);
         dcCore::app()->blog->settings->addToAny->put('on_page', $ata_on_page);
@@ -68,7 +70,7 @@ if (!empty($_POST)) {
         dcCore::app()->blog->triggerBlog();
 
         dcPage::addSuccessNotice(__('Settings have been successfully updated.'));
-        http::redirect(dcCore::app()->admin->getPageURL());
+        Http::redirect(dcCore::app()->admin->getPageURL());
     } catch (Exception $e) {
         dcCore::app()->error->add($e->getMessage());
     }
@@ -84,7 +86,7 @@ if (!empty($_POST)) {
 <?php
 echo dcPage::breadcrumb(
     [
-        html::escapeHTML(dcCore::app()->blog->name) => '',
+        Html::escapeHTML(dcCore::app()->blog->name) => '',
         __('AddToAny')                              => '',
     ]
 );
@@ -112,14 +114,14 @@ echo
 '<h3>' . __('Advanced options') . '</h3>' .
 
 '<p class="area"><label for="ata_style">' . __('AddToAny sharing tool CSS style:') . '</label> ' .
-form::textarea('ata_style', 30, 8, html::escapeHTML($ata_style)) . '</p>' .
+form::textarea('ata_style', 30, 8, Html::escapeHTML($ata_style)) . '</p>' .
 
 '<p><label for="ata_prefix">' . __('AddToAny sharing tool text prefix:') . '</label> ' .
-form::field('ata_prefix', 30, 128, html::escapeHTML($ata_prefix)) . '</p>' .
+form::field('ata_prefix', 30, 128, Html::escapeHTML($ata_prefix)) . '</p>' .
 '<p class="form-note">' . __('This will be inserted before link.') . '</p>' .
 
 '<p><label for="ata_suffix">' . __('AddToAny sharing tool text suffix:') . '</label> ' .
-form::field('ata_suffix', 30, 128, html::escapeHTML($ata_suffix)) . '</p>' .
+form::field('ata_suffix', 30, 128, Html::escapeHTML($ata_suffix)) . '</p>' .
 '<p class="form-note">' . __('This will be inserted after link.') . '</p>' .
 
 '<p class="form-note">' . __('The link will be inserted as <code>&lt;p class="a2a"&gt;&lt;a …&gt;&lt;img …&gt;&lt;/a&gt;&lt;/p&gt;</code> form.') . '</p>' .

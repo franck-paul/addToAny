@@ -19,7 +19,6 @@ if (!dcCore::app()->newVersion(basename(__DIR__), dcCore::app()->plugins->module
 }
 
 try {
-    dcCore::app()->blog->settings->addNamespace('addToAny');
     dcCore::app()->blog->settings->addToAny->put('active', false, 'boolean', 'Active', false, true);
     dcCore::app()->blog->settings->addToAny->put('on_post', true, 'boolean', 'Show AddToAny sharing tool on post', false, true);
     dcCore::app()->blog->settings->addToAny->put('on_page', false, 'boolean', 'Show AddToAny sharing tool on post', false, true);

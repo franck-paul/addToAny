@@ -10,13 +10,9 @@
  * @copyright Franck Paul carnet.franck.paul@gmail.com
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
-if (!defined('DC_RC_PATH')) {
-    return;
-}
-
 class dcAddToAny
 {
-    private static $a2a_loaded = false;
+    private static bool $a2a_loaded = false;
 
     public static function publicEntryBeforeContent()
     {
@@ -75,7 +71,6 @@ class dcAddToAny
 
     public static function publicHeadContent()
     {
-        dcCore::app()->blog->settings->addNamespace('addToAny');
         if ((dcCore::app()->blog->settings->addToAny->active) && (dcCore::app()->blog->settings->addToAny->style !== null)) {
             echo '<style type="text/css">' . "\n" . self::customStyle() . "</style>\n";
         }
@@ -122,9 +117,11 @@ class dcAddToAny
     }
 }
 
-dcCore::app()->addBehavior('publicHeadContent', [dcAddToAny::class, 'publicHeadContent']);
+dcCore::app()->addBehaviors([
+    'publicHeadContent'        => [dcAddToAny::class, 'publicHeadContent'],
 
-dcCore::app()->addBehavior('publicEntryBeforeContent', [dcAddToAny::class, 'publicEntryBeforeContent']);
-dcCore::app()->addBehavior('publicEntryAfterContent', [dcAddToAny::class, 'publicEntryAfterContent']);
+    'publicEntryBeforeContent' => [dcAddToAny::class, 'publicEntryBeforeContent'],
+    'publicEntryAfterContent'  => [dcAddToAny::class, 'publicEntryAfterContent'],
+]);
 
 dcCore::app()->tpl->addValue('AddToAny', [dcAddToAny::class, 'tplAddToAny']);
