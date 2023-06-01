@@ -21,7 +21,8 @@ $this->registerModule(
             dcAuth::PERMISSION_ADMIN,
         ]),
         'type'     => 'plugin',
-        'settings' => [// Settings
+        'settings' => [
+            'self' => '',
         ],
 
         'details'    => 'https://open-time.net/?q=addToAny',
