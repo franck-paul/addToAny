@@ -14,9 +14,9 @@ use Dotclear\Helper\L10n;
 L10n::$locales['Add AddToAny sharing tool to your posts and pages'] = 'Ajoute le lien de partage AddToAny à vos billets et pages';
 L10n::$locales['AddToAny'] = 'AddToAny';
 L10n::$locales['Share'] = 'Partage';
-L10n::$locales['addToAny'] = 'AddToAny';
+L10n::$locales['addToAny'] = 'addToAny';
 L10n::$locales['Activate AddToAny'] = 'Activer AddToAny';
-L10n::$locales['Options'] = '';
+L10n::$locales['Options'] = 'Options';
 L10n::$locales['Automatically insert AddToAny sharing tool on posts'] = 'Insérer le lien de partage sur les billets';
 L10n::$locales['Automatically insert AddToAny sharing tool on pages'] = 'Insérer le lien de partage sur les pages';
 L10n::$locales['Position'] = 'Position';
@@ -30,4 +30,4 @@ L10n::$locales['AddToAny sharing tool text suffix:'] = 'Insérer le texte suivan
 L10n::$locales['This will be inserted after link.'] = 'Sera précédé d\'une espace si non vide.';
 L10n::$locales['See <a href="https://www.addtoany.com/">AddToAny web site</a> for more information.'] = 'Voir <a href="https://www.addtoany.com/">le site web AddToAny</a> pour plus d\'informations.';
 L10n::$locales['The link will be inserted as <code>&lt;p class="a2a"&gt;&lt;a …&gt;&lt;img …&gt;&lt;/a&gt;&lt;/p&gt;</code> form.'] = 'Le lien sera inséré sous la forme <code>&lt;p class="a2a"&gt;&lt;a …&gt;&lt;img …&gt;&lt;/a&gt;&lt;/p&gt;</code>.';
-L10n::$locales['Save'] = '';
+L10n::$locales['Save'] = 'Enregistrer';
