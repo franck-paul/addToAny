@@ -17,63 +17,61 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Add AddToAny sharing tool to your posts and pages"
-msgstr "Ajoute le lien de partage AddToAny à vos billets et pages"
+msgstr ""
 
 msgid "AddToAny"
-msgstr "AddToAny"
+msgstr ""
 
 msgid "Share"
-msgstr "Partage"
+msgstr ""
 
-#, fuzzy
 msgid "addToAny"
-msgstr "AddToAny"
+msgstr ""
 
-#, fuzzy
 msgid "Activate AddToAny"
-msgstr "Activer AddToAny"
+msgstr ""
 
 msgid "Options"
 msgstr ""
 
 msgid "Automatically insert AddToAny sharing tool on posts"
-msgstr "Insérer le lien de partage sur les billets"
+msgstr ""
 
 msgid "Automatically insert AddToAny sharing tool on pages"
-msgstr "Insérer le lien de partage sur les pages"
+msgstr ""
 
 msgid "Position"
-msgstr "Position"
+msgstr ""
 
 msgid "Insert AddToAny sharing tool before content"
-msgstr "Insérer le lien avant le contenu"
+msgstr ""
 
 msgid "Insert AddToAny sharing tool after content"
-msgstr "Insérer le lien après le contenu"
+msgstr ""
 
 msgid "Advanced options"
-msgstr "Options avancées"
+msgstr ""
 
 msgid "AddToAny sharing tool CSS style:"
-msgstr "Style(s) CSS complémentaire à appliquer :"
+msgstr ""
 
 msgid "AddToAny sharing tool text prefix:"
-msgstr "Insérer le texte suivant devant le lien de partage :"
+msgstr ""
 
 msgid "This will be inserted before link."
-msgstr "Sera suivi d'une espace si non vide."
+msgstr ""
 
 msgid "AddToAny sharing tool text suffix:"
-msgstr "Insérer le texte suivant après le lien de partage :"
+msgstr ""
 
 msgid "This will be inserted after link."
-msgstr "Sera précédé d'une espace si non vide."
+msgstr ""
 
 msgid "See <a href=\"https://www.addtoany.com/\">AddToAny web site</a> for more information."
-msgstr "Voir <a href=\"https://www.addtoany.com/\">le site web AddToAny</a> pour plus d'informations."
+msgstr ""
 
 msgid "The link will be inserted as <code>&lt;p class=\"a2a\"&gt;&lt;a …&gt;&lt;img …&gt;&lt;/a&gt;&lt;/p&gt;</code> form."
-msgstr "Le lien sera inséré sous la forme <code>&lt;p class=\"a2a\"&gt;&lt;a …&gt;&lt;img …&gt;&lt;/a&gt;&lt;/p&gt;</code>."
+msgstr ""
 
 msgid "Save"
 msgstr ""

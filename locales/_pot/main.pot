@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Dotclear 2 addToAny module\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-01 09:01+0200\n"
+"POT-Creation-Date: 2023-06-01 17:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,79 +16,85 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../git-plugins/addToAny/_admin.php:18
+#: ../git-plugins/addToAny/src/Backend.php:28
 msgid "Add AddToAny sharing tool to your posts and pages"
 msgstr ""
 
-#: ../git-plugins/addToAny/_admin.php:18 ../git-plugins/addToAny/_admin.php:21
-#: ../git-plugins/addToAny/index.php:82 ../git-plugins/addToAny/index.php:90
+#: ../git-plugins/addToAny/src/Backend.php:28
+#: ../git-plugins/addToAny/src/Backend.php:40
 msgid "AddToAny"
 msgstr ""
 
-#: ../git-plugins/addToAny/_public.php:85
+#: ../git-plugins/addToAny/src/FrontendBehaviors.php:72
 msgid "Share"
 msgstr ""
 
-#: ../git-plugins/addToAny/index.php:98
-msgid "Active AddToAny"
+#: ../git-plugins/addToAny/src/Manage.php:101
+#: ../git-plugins/addToAny/src/Manage.php:130
+#: ../git-plugins/addToAny/src/Manage.php:135
+msgid "addToAny"
 msgstr ""
 
-#: ../git-plugins/addToAny/index.php:100
+#: ../git-plugins/addToAny/src/Manage.php:149
+msgid "Activate AddToAny"
+msgstr ""
+
+#: ../git-plugins/addToAny/src/Manage.php:151
 msgid "Options"
 msgstr ""
 
-#: ../git-plugins/addToAny/index.php:103
+#: ../git-plugins/addToAny/src/Manage.php:155
 msgid "Automatically insert AddToAny sharing tool on posts"
 msgstr ""
 
-#: ../git-plugins/addToAny/index.php:105
+#: ../git-plugins/addToAny/src/Manage.php:160
 msgid "Automatically insert AddToAny sharing tool on pages"
 msgstr ""
 
-#: ../git-plugins/addToAny/index.php:107
+#: ../git-plugins/addToAny/src/Manage.php:162
 msgid "Position"
 msgstr ""
 
-#: ../git-plugins/addToAny/index.php:110
+#: ../git-plugins/addToAny/src/Manage.php:166
 msgid "Insert AddToAny sharing tool before content"
 msgstr ""
 
-#: ../git-plugins/addToAny/index.php:112
+#: ../git-plugins/addToAny/src/Manage.php:171
 msgid "Insert AddToAny sharing tool after content"
 msgstr ""
 
-#: ../git-plugins/addToAny/index.php:114
+#: ../git-plugins/addToAny/src/Manage.php:173
 msgid "Advanced options"
 msgstr ""
 
-#: ../git-plugins/addToAny/index.php:116
+#: ../git-plugins/addToAny/src/Manage.php:179
 msgid "AddToAny sharing tool CSS style:"
 msgstr ""
 
-#: ../git-plugins/addToAny/index.php:119
+#: ../git-plugins/addToAny/src/Manage.php:187
 msgid "AddToAny sharing tool text prefix:"
 msgstr ""
 
-#: ../git-plugins/addToAny/index.php:121
+#: ../git-plugins/addToAny/src/Manage.php:190
 msgid "This will be inserted before link."
 msgstr ""
 
-#: ../git-plugins/addToAny/index.php:123
+#: ../git-plugins/addToAny/src/Manage.php:198
 msgid "AddToAny sharing tool text suffix:"
 msgstr ""
 
-#: ../git-plugins/addToAny/index.php:125
+#: ../git-plugins/addToAny/src/Manage.php:201
 msgid "This will be inserted after link."
 msgstr ""
 
-#: ../git-plugins/addToAny/index.php:127
-msgid "The link will be inserted as <code>&lt;p class=\"a2a\"&gt;&lt;a …&gt;&lt;img …&gt;&lt;/a&gt;&lt;/p&gt;</code> form."
-msgstr ""
-
-#: ../git-plugins/addToAny/index.php:129
+#: ../git-plugins/addToAny/src/Manage.php:204
 msgid "See <a href=\"https://www.addtoany.com/\">AddToAny web site</a> for more information."
 msgstr ""
 
-#: ../git-plugins/addToAny/index.php:131
+#: ../git-plugins/addToAny/src/Manage.php:204
+msgid "The link will be inserted as <code>&lt;p class=\"a2a\"&gt;&lt;a …&gt;&lt;img …&gt;&lt;/a&gt;&lt;/p&gt;</code> form."
+msgstr ""
+
+#: ../git-plugins/addToAny/src/Manage.php:209
 msgid "Save"
 msgstr ""

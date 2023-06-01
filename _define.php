@@ -14,7 +14,7 @@ $this->registerModule(
     'AddToAny',
     'Add AddToAny sharing tool to your posts and pages',
     'Franck Paul',
-    '1.1',
+    '2.0',
     [
         'requires'    => [['core', '2.26']],
         'permissions' => dcCore::app()->auth->makePermissions([

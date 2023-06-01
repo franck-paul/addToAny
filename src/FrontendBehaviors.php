@@ -10,9 +10,15 @@
  * @copyright Franck Paul carnet.franck.paul@gmail.com
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
-class dcAddToAny
+declare(strict_types=1);
+
+namespace Dotclear\Plugin\addToAny;
+
+use dcCore;
+
+class FrontendBehaviors
 {
-    private static bool $a2a_loaded = false;
+    public static bool $a2a_loaded = false;
 
     public static function publicEntryBeforeContent()
     {
@@ -48,25 +54,6 @@ class dcAddToAny
                 }
             }
         }
-    }
-
-    public static function tplAddToAny($attr)
-    {
-        $ret = '';
-        if (dcCore::app()->blog->settings->addToAny->active) {
-            $f   = dcCore::app()->tpl->getFilters($attr);
-            $url = sprintf($f, dcCore::app()->ctx->posts->getURL());
-            $ret = self::addToAny(
-                $url,
-                dcCore::app()->ctx->posts->post_title,
-                !self::$a2a_loaded,
-                dcCore::app()->blog->settings->addToAny->prefix,
-                dcCore::app()->blog->settings->addToAny->suffix
-            );
-            self::$a2a_loaded = true;
-        }
-
-        return $ret;
     }
 
     public static function publicHeadContent()
@@ -116,12 +103,3 @@ class dcAddToAny
         return $s . "\n";
     }
 }
-
-dcCore::app()->addBehaviors([
-    'publicHeadContent'        => [dcAddToAny::class, 'publicHeadContent'],
-
-    'publicEntryBeforeContent' => [dcAddToAny::class, 'publicEntryBeforeContent'],
-    'publicEntryAfterContent'  => [dcAddToAny::class, 'publicEntryAfterContent'],
-]);
-
-dcCore::app()->tpl->addValue('AddToAny', [dcAddToAny::class, 'tplAddToAny']);
