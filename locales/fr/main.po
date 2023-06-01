@@ -1,20 +1,24 @@
 # SOME DESCRIPTIVE TITLE.
 # This file is put in the public domain.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+# Translators:
+# Franck Paul <carnet.franck.paul@gmail.com>, 2023
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Dotclear 2 addToAny module\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-01 17:08+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2023-06-01 15:12+0000\n"
+"Last-Translator: Franck Paul <carnet.franck.paul@gmail.com>, 2023\n"
+"Language-Team: French (https://app.transifex.com/open-time/teams/109573/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "Add AddToAny sharing tool to your posts and pages"
 msgstr "Ajoute le lien de partage AddToAny à vos billets et pages"
@@ -25,16 +29,14 @@ msgstr "AddToAny"
 msgid "Share"
 msgstr "Partage"
 
-#, fuzzy
 msgid "addToAny"
-msgstr "AddToAny"
+msgstr "addToAny"
 
-#, fuzzy
 msgid "Activate AddToAny"
 msgstr "Activer AddToAny"
 
 msgid "Options"
-msgstr ""
+msgstr "Options"
 
 msgid "Automatically insert AddToAny sharing tool on posts"
 msgstr "Insérer le lien de partage sur les billets"
@@ -69,11 +71,19 @@ msgstr "Insérer le texte suivant après le lien de partage :"
 msgid "This will be inserted after link."
 msgstr "Sera précédé d'une espace si non vide."
 
-msgid "See <a href=\"https://www.addtoany.com/\">AddToAny web site</a> for more information."
-msgstr "Voir <a href=\"https://www.addtoany.com/\">le site web AddToAny</a> pour plus d'informations."
+msgid ""
+"See <a href=\"https://www.addtoany.com/\">AddToAny web site</a> for more "
+"information."
+msgstr ""
+"Voir <a href=\"https://www.addtoany.com/\">le site web AddToAny</a> pour "
+"plus d'informations."
 
-msgid "The link will be inserted as <code>&lt;p class=\"a2a\"&gt;&lt;a …&gt;&lt;img …&gt;&lt;/a&gt;&lt;/p&gt;</code> form."
-msgstr "Le lien sera inséré sous la forme <code>&lt;p class=\"a2a\"&gt;&lt;a …&gt;&lt;img …&gt;&lt;/a&gt;&lt;/p&gt;</code>."
+msgid ""
+"The link will be inserted as <code>&lt;p class=\"a2a\"&gt;&lt;a …&gt;&lt;img"
+" …&gt;&lt;/a&gt;&lt;/p&gt;</code> form."
+msgstr ""
+"Le lien sera inséré sous la forme <code>&lt;p class=\"a2a\"&gt;&lt;a "
+"…&gt;&lt;img …&gt;&lt;/a&gt;&lt;/p&gt;</code>."
 
 msgid "Save"
-msgstr ""
+msgstr "Enregistrer"
