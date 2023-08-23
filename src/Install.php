@@ -34,7 +34,7 @@ class Install extends Process
 
         try {
             // Init
-            $settings = dcCore::app()->blog->settings->get(My::id());
+            $settings = My::settings();
             $settings->put('active', false, dcNamespace::NS_BOOL, 'Active', false, true);
             $settings->put('on_post', true, dcNamespace::NS_BOOL, 'Show AddToAny sharing tool on post', false, true);
             $settings->put('on_page', false, dcNamespace::NS_BOOL, 'Show AddToAny sharing tool on post', false, true);

@@ -49,7 +49,7 @@ class Manage extends Process
             return false;
         }
 
-        $settings = dcCore::app()->blog->settings->get(My::id());
+        $settings = My::settings();
         if (is_null($settings->active)) {
             try {
                 // Add default settings values if necessary
@@ -112,7 +112,7 @@ class Manage extends Process
             return;
         }
 
-        $settings           = dcCore::app()->blog->settings->get(My::id());
+        $settings           = My::settings();
         $ata_active         = (bool) $settings->active;
         $ata_on_post        = (bool) $settings->on_post;
         $ata_on_page        = (bool) $settings->on_page;
@@ -122,7 +122,7 @@ class Manage extends Process
         $ata_prefix         = $settings->prefix;
         $ata_suffix         = $settings->suffix;
 
-        Page::openModule(__('addToAny'));
+        Page::openModule(My::name());
 
         echo Page::breadcrumb(
             [
@@ -202,7 +202,7 @@ class Manage extends Process
                 (new Para())->items([
                     (new Submit(['frmsubmit']))
                         ->value(__('Save')),
-                    dcCore::app()->formNonce(false),
+                    ... My::hiddenFields(),
                 ]),
             ])
         ->render();
