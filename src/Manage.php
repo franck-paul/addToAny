@@ -64,7 +64,7 @@ class Manage extends Process
                 $settings->put('suffix', '', dcNamespace::NS_STRING, 'AddToAny sharing tool suffix text', false);
 
                 dcCore::app()->blog->triggerBlog();
-                dcCore::app()->admin->url->redirect('admin.plugin.' . My::id());
+                dcCore::app()->adminurl->redirect('admin.plugin.' . My::id());
             } catch (Exception $e) {
                 dcCore::app()->error->add($e->getMessage());
             }
@@ -94,7 +94,7 @@ class Manage extends Process
                 dcCore::app()->blog->triggerBlog();
 
                 Notices::addSuccessNotice(__('Settings have been successfully updated.'));
-                dcCore::app()->admin->url->redirect('admin.plugin.' . My::id());
+                dcCore::app()->adminurl->redirect('admin.plugin.' . My::id());
             } catch (Exception $e) {
                 dcCore::app()->error->add($e->getMessage());
             }

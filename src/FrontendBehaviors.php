@@ -20,7 +20,7 @@ class FrontendBehaviors
 {
     public static bool $a2a_loaded = false;
 
-    public static function publicEntryBeforeContent()
+    public static function publicEntryBeforeContent(): string
     {
         if (dcCore::app()->blog->settings->addToAny->active) {
             if ((dcCore::app()->ctx->posts->post_type == 'post' && dcCore::app()->blog->settings->addToAny->on_post) || (dcCore::app()->ctx->posts->post_type == 'page' && dcCore::app()->blog->settings->addToAny->on_page)) {
@@ -36,9 +36,11 @@ class FrontendBehaviors
                 }
             }
         }
+
+        return '';
     }
 
-    public static function publicEntryAfterContent()
+    public static function publicEntryAfterContent(): string
     {
         if (dcCore::app()->blog->settings->addToAny->active) {
             if ((dcCore::app()->ctx->posts->post_type == 'post' && dcCore::app()->blog->settings->addToAny->on_post) || (dcCore::app()->ctx->posts->post_type == 'page' && dcCore::app()->blog->settings->addToAny->on_page)) {
@@ -54,18 +56,22 @@ class FrontendBehaviors
                 }
             }
         }
+
+        return '';
     }
 
-    public static function publicHeadContent()
+    public static function publicHeadContent(): string
     {
         if ((dcCore::app()->blog->settings->addToAny->active) && (dcCore::app()->blog->settings->addToAny->style !== null)) {
             echo '<style type="text/css">' . "\n" . self::customStyle() . "</style>\n";
         }
+
+        return '';
     }
 
     // Helpers
 
-    public static function addToAny($url, $label, $first = true, $prefix = null, $suffix = null)
+    public static function addToAny(string $url, string $label, bool $first = true, ?string $prefix = null, ?string $suffix = null): string
     {
         $ret = '<p class="a2a">' . ($prefix !== null ? $prefix . ' ' : '') .
         '<a class="a2a_dd" href="https://www.addtoany.com/share_save">' . "\n" .
@@ -91,11 +97,11 @@ class FrontendBehaviors
         return $ret;
     }
 
-    public static function customStyle()
+    public static function customStyle(): string
     {
         $s = dcCore::app()->blog->settings->addToAny->style;
         if ($s === null) {
-            return;
+            return '';
         }
 
         return $s . "\n";

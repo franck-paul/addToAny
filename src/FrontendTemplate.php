@@ -14,11 +14,17 @@ declare(strict_types=1);
 
 namespace Dotclear\Plugin\addToAny;
 
+use ArrayObject;
 use dcCore;
 
 class FrontendTemplate
 {
-    public static function tplAddToAny($attr)
+    /**
+     * @param      array<string, mixed>|\ArrayObject<string, mixed>  $attr      The attribute
+     *
+     * @return     string
+     */
+    public static function tplAddToAny(array|ArrayObject $attr): string
     {
         $ret = '';
         if (dcCore::app()->blog->settings->addToAny->active) {
