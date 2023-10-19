@@ -26,16 +26,18 @@ class FrontendTemplate
      */
     public static function tplAddToAny(array|ArrayObject $attr): string
     {
-        $ret = '';
-        if (dcCore::app()->blog->settings->addToAny->active) {
+        $ret      = '';
+        $settings = My::settings();
+
+        if ($settings->active) {
             $f   = dcCore::app()->tpl->getFilters($attr);
             $url = sprintf($f, dcCore::app()->ctx->posts->getURL());
             $ret = FrontendBehaviors::addToAny(
                 $url,
                 dcCore::app()->ctx->posts->post_title,
                 !FrontendBehaviors::$a2a_loaded,
-                dcCore::app()->blog->settings->addToAny->prefix,
-                dcCore::app()->blog->settings->addToAny->suffix
+                $settings->prefix,
+                $settings->suffix
             );
             FrontendBehaviors::$a2a_loaded = true;
         }

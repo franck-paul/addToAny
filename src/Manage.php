@@ -16,6 +16,7 @@ namespace Dotclear\Plugin\addToAny;
 
 use dcCore;
 use dcNamespace;
+use Dotclear\App;
 use Dotclear\Core\Backend\Notices;
 use Dotclear\Core\Backend\Page;
 use Dotclear\Core\Process;
@@ -63,7 +64,7 @@ class Manage extends Process
                 $settings->put('prefix', '', dcNamespace::NS_STRING, 'AddToAny sharing tool prefix text', false);
                 $settings->put('suffix', '', dcNamespace::NS_STRING, 'AddToAny sharing tool suffix text', false);
 
-                dcCore::app()->blog->triggerBlog();
+                App::blog()->triggerBlog();
                 dcCore::app()->adminurl->redirect('admin.plugin.' . My::id());
             } catch (Exception $e) {
                 dcCore::app()->error->add($e->getMessage());
@@ -91,7 +92,7 @@ class Manage extends Process
                 $settings->put('prefix', $ata_prefix, dcNamespace::NS_STRING);
                 $settings->put('suffix', $ata_suffix, dcNamespace::NS_STRING);
 
-                dcCore::app()->blog->triggerBlog();
+                App::blog()->triggerBlog();
 
                 Notices::addSuccessNotice(__('Settings have been successfully updated.'));
                 dcCore::app()->adminurl->redirect('admin.plugin.' . My::id());
@@ -126,8 +127,8 @@ class Manage extends Process
 
         echo Page::breadcrumb(
             [
-                Html::escapeHTML(dcCore::app()->blog->name) => '',
-                __('addToAny')                              => '',
+                Html::escapeHTML(App::blog()->name()) => '',
+                __('addToAny')                        => '',
             ]
         );
         echo Notices::getNotices();

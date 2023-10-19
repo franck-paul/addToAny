@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Dotclear\Plugin\addToAny;
 
 use dcCore;
+use Dotclear\App;
 
 class FrontendBehaviors
 {
@@ -22,15 +23,16 @@ class FrontendBehaviors
 
     public static function publicEntryBeforeContent(): string
     {
-        if (dcCore::app()->blog->settings->addToAny->active) {
-            if ((dcCore::app()->ctx->posts->post_type == 'post' && dcCore::app()->blog->settings->addToAny->on_post) || (dcCore::app()->ctx->posts->post_type == 'page' && dcCore::app()->blog->settings->addToAny->on_page)) {
-                if (dcCore::app()->blog->settings->addToAny->before_content) {
+        $settings = My::settings();
+        if ($settings->active) {
+            if ((dcCore::app()->ctx->posts->post_type == 'post' && $settings->on_post) || (dcCore::app()->ctx->posts->post_type == 'page' && $settings->on_page)) {
+                if ($settings->before_content) {
                     echo self::addToAny(
                         dcCore::app()->ctx->posts->getURL(),
                         dcCore::app()->ctx->posts->post_title,
                         !self::$a2a_loaded,
-                        dcCore::app()->blog->settings->addToAny->prefix,
-                        dcCore::app()->blog->settings->addToAny->suffix
+                        $settings->prefix,
+                        $settings->suffix
                     );
                     self::$a2a_loaded = true;
                 }
@@ -42,15 +44,16 @@ class FrontendBehaviors
 
     public static function publicEntryAfterContent(): string
     {
-        if (dcCore::app()->blog->settings->addToAny->active) {
-            if ((dcCore::app()->ctx->posts->post_type == 'post' && dcCore::app()->blog->settings->addToAny->on_post) || (dcCore::app()->ctx->posts->post_type == 'page' && dcCore::app()->blog->settings->addToAny->on_page)) {
-                if (dcCore::app()->blog->settings->addToAny->after_content) {
+        $settings = My::settings();
+        if ($settings->active) {
+            if ((dcCore::app()->ctx->posts->post_type == 'post' && $settings->on_post) || (dcCore::app()->ctx->posts->post_type == 'page' && $settings->on_page)) {
+                if ($settings->after_content) {
                     echo self::addToAny(
                         dcCore::app()->ctx->posts->getURL(),
                         dcCore::app()->ctx->posts->post_title,
                         !self::$a2a_loaded,
-                        dcCore::app()->blog->settings->addToAny->prefix,
-                        dcCore::app()->blog->settings->addToAny->suffix
+                        $settings->prefix,
+                        $settings->suffix
                     );
                     self::$a2a_loaded = true;
                 }
@@ -62,7 +65,8 @@ class FrontendBehaviors
 
     public static function publicHeadContent(): string
     {
-        if ((dcCore::app()->blog->settings->addToAny->active) && (dcCore::app()->blog->settings->addToAny->style !== null)) {
+        $settings = My::settings();
+        if (($settings->active) && ($settings->style !== null)) {
             echo '<style type="text/css">' . "\n" . self::customStyle() . "</style>\n";
         }
 
@@ -75,7 +79,7 @@ class FrontendBehaviors
     {
         $ret = '<p class="a2a">' . ($prefix !== null ? $prefix . ' ' : '') .
         '<a class="a2a_dd" href="https://www.addtoany.com/share_save">' . "\n" .
-        '<img src="' . urldecode(dcCore::app()->blog->getPF('addToAny/img/favicon.png')) . '" alt="' . __('Share') . '"/>' . "\n" .
+        '<img src="' . urldecode(App::blog()->getPF('addToAny/img/favicon.png')) . '" alt="' . __('Share') . '"/>' . "\n" .
             '</a>' . ($suffix !== null ? ' ' . $suffix : '') . '</p>' . "\n";
         if ($first) {
             $ret .= '<script>' . "\n" .
@@ -99,7 +103,7 @@ class FrontendBehaviors
 
     public static function customStyle(): string
     {
-        $s = dcCore::app()->blog->settings->addToAny->style;
+        $s = My::settings()->style;
         if ($s === null) {
             return '';
         }
