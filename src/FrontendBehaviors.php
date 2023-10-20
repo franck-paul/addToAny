@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace Dotclear\Plugin\addToAny;
 
-use dcCore;
 use Dotclear\App;
 
 class FrontendBehaviors
@@ -25,11 +24,11 @@ class FrontendBehaviors
     {
         $settings = My::settings();
         if ($settings->active) {
-            if ((dcCore::app()->ctx->posts->post_type == 'post' && $settings->on_post) || (dcCore::app()->ctx->posts->post_type == 'page' && $settings->on_page)) {
+            if ((App::frontend()->context()->posts->post_type == 'post' && $settings->on_post) || (App::frontend()->context()->posts->post_type == 'page' && $settings->on_page)) {
                 if ($settings->before_content) {
                     echo self::addToAny(
-                        dcCore::app()->ctx->posts->getURL(),
-                        dcCore::app()->ctx->posts->post_title,
+                        App::frontend()->context()->posts->getURL(),
+                        App::frontend()->context()->posts->post_title,
                         !self::$a2a_loaded,
                         $settings->prefix,
                         $settings->suffix
@@ -46,11 +45,11 @@ class FrontendBehaviors
     {
         $settings = My::settings();
         if ($settings->active) {
-            if ((dcCore::app()->ctx->posts->post_type == 'post' && $settings->on_post) || (dcCore::app()->ctx->posts->post_type == 'page' && $settings->on_page)) {
+            if ((App::frontend()->context()->posts->post_type == 'post' && $settings->on_post) || (App::frontend()->context()->posts->post_type == 'page' && $settings->on_page)) {
                 if ($settings->after_content) {
                     echo self::addToAny(
-                        dcCore::app()->ctx->posts->getURL(),
-                        dcCore::app()->ctx->posts->post_title,
+                        App::frontend()->context()->posts->getURL(),
+                        App::frontend()->context()->posts->post_title,
                         !self::$a2a_loaded,
                         $settings->prefix,
                         $settings->suffix

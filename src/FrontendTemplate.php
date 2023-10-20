@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace Dotclear\Plugin\addToAny;
 
 use ArrayObject;
-use dcCore;
+use Dotclear\App;
 
 class FrontendTemplate
 {
@@ -30,11 +30,11 @@ class FrontendTemplate
         $settings = My::settings();
 
         if ($settings->active) {
-            $f   = dcCore::app()->tpl->getFilters($attr);
-            $url = sprintf($f, dcCore::app()->ctx->posts->getURL());
+            $f   = App::frontend()->template()->getFilters($attr);
+            $url = sprintf($f, App::frontend()->context()->posts->getURL());
             $ret = FrontendBehaviors::addToAny(
                 $url,
-                dcCore::app()->ctx->posts->post_title,
+                App::frontend()->context()->posts->post_title,
                 !FrontendBehaviors::$a2a_loaded,
                 $settings->prefix,
                 $settings->suffix

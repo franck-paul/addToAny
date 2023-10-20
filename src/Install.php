@@ -14,8 +14,7 @@ declare(strict_types=1);
 
 namespace Dotclear\Plugin\addToAny;
 
-use dcCore;
-use dcNamespace;
+use Dotclear\App;
 use Dotclear\Core\Process;
 use Exception;
 
@@ -35,16 +34,16 @@ class Install extends Process
         try {
             // Init
             $settings = My::settings();
-            $settings->put('active', false, dcNamespace::NS_BOOL, 'Active', false, true);
-            $settings->put('on_post', true, dcNamespace::NS_BOOL, 'Show AddToAny sharing tool on post', false, true);
-            $settings->put('on_page', false, dcNamespace::NS_BOOL, 'Show AddToAny sharing tool on post', false, true);
-            $settings->put('before_content', false, dcNamespace::NS_BOOL, 'Display AddToAny sharing tool before content', false, true);
-            $settings->put('after_content', true, dcNamespace::NS_BOOL, 'Display AddToAny sharing tool after content', false, true);
-            $settings->put('style', '', dcNamespace::NS_STRING, 'AddToAny sharing tool style', false, true);
-            $settings->put('prefix', '', dcNamespace::NS_STRING, 'AddToAny sharing tool prefix text', false, true);
-            $settings->put('suffix', '', dcNamespace::NS_STRING, 'AddToAny sharing tool suffix text', false, true);
+            $settings->put('active', false, App::blogWorkspace()::NS_BOOL, 'Active', false, true);
+            $settings->put('on_post', true, App::blogWorkspace()::NS_BOOL, 'Show AddToAny sharing tool on post', false, true);
+            $settings->put('on_page', false, App::blogWorkspace()::NS_BOOL, 'Show AddToAny sharing tool on post', false, true);
+            $settings->put('before_content', false, App::blogWorkspace()::NS_BOOL, 'Display AddToAny sharing tool before content', false, true);
+            $settings->put('after_content', true, App::blogWorkspace()::NS_BOOL, 'Display AddToAny sharing tool after content', false, true);
+            $settings->put('style', '', App::blogWorkspace()::NS_STRING, 'AddToAny sharing tool style', false, true);
+            $settings->put('prefix', '', App::blogWorkspace()::NS_STRING, 'AddToAny sharing tool prefix text', false, true);
+            $settings->put('suffix', '', App::blogWorkspace()::NS_STRING, 'AddToAny sharing tool suffix text', false, true);
         } catch (Exception $e) {
-            dcCore::app()->error->add($e->getMessage());
+            App::error()->add($e->getMessage());
         }
 
         return true;

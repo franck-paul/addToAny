@@ -14,8 +14,6 @@ declare(strict_types=1);
 
 namespace Dotclear\Plugin\addToAny;
 
-use dcCore;
-use dcNamespace;
 use Dotclear\App;
 use Dotclear\Core\Backend\Notices;
 use Dotclear\Core\Backend\Page;
@@ -55,19 +53,19 @@ class Manage extends Process
             try {
                 // Add default settings values if necessary
 
-                $settings->put('active', false, dcNamespace::NS_BOOL, 'Active', false);
-                $settings->put('on_post', true, dcNamespace::NS_BOOL, 'Show AddToAny sharing tool on post', false);
-                $settings->put('on_page', false, dcNamespace::NS_BOOL, 'Show AddToAny sharing tool on post', false);
-                $settings->put('before_content', false, dcNamespace::NS_BOOL, 'Display AddToAny sharing tool before content', false);
-                $settings->put('after_content', true, dcNamespace::NS_BOOL, 'Display AddToAny sharing tool after content', false);
-                $settings->put('style', '', dcNamespace::NS_STRING, 'AddToAny sharing tool style', false);
-                $settings->put('prefix', '', dcNamespace::NS_STRING, 'AddToAny sharing tool prefix text', false);
-                $settings->put('suffix', '', dcNamespace::NS_STRING, 'AddToAny sharing tool suffix text', false);
+                $settings->put('active', false, App::blogWorkspace()::NS_BOOL, 'Active', false);
+                $settings->put('on_post', true, App::blogWorkspace()::NS_BOOL, 'Show AddToAny sharing tool on post', false);
+                $settings->put('on_page', false, App::blogWorkspace()::NS_BOOL, 'Show AddToAny sharing tool on post', false);
+                $settings->put('before_content', false, App::blogWorkspace()::NS_BOOL, 'Display AddToAny sharing tool before content', false);
+                $settings->put('after_content', true, App::blogWorkspace()::NS_BOOL, 'Display AddToAny sharing tool after content', false);
+                $settings->put('style', '', App::blogWorkspace()::NS_STRING, 'AddToAny sharing tool style', false);
+                $settings->put('prefix', '', App::blogWorkspace()::NS_STRING, 'AddToAny sharing tool prefix text', false);
+                $settings->put('suffix', '', App::blogWorkspace()::NS_STRING, 'AddToAny sharing tool suffix text', false);
 
                 App::blog()->triggerBlog();
-                dcCore::app()->adminurl->redirect('admin.plugin.' . My::id());
+                My::redirect();
             } catch (Exception $e) {
-                dcCore::app()->error->add($e->getMessage());
+                App::error()->add($e->getMessage());
             }
         }
 
@@ -83,21 +81,21 @@ class Manage extends Process
                 $ata_suffix         = trim(Html::escapeHTML($_POST['ata_suffix']));
 
                 // Everything's fine, save options
-                $settings->put('active', $ata_active, dcNamespace::NS_BOOL);
-                $settings->put('on_post', $ata_on_post, dcNamespace::NS_BOOL);
-                $settings->put('on_page', $ata_on_page, dcNamespace::NS_BOOL);
-                $settings->put('before_content', $ata_before_content, dcNamespace::NS_BOOL);
-                $settings->put('after_content', $ata_after_content, dcNamespace::NS_BOOL);
-                $settings->put('style', $ata_style, dcNamespace::NS_STRING);
-                $settings->put('prefix', $ata_prefix, dcNamespace::NS_STRING);
-                $settings->put('suffix', $ata_suffix, dcNamespace::NS_STRING);
+                $settings->put('active', $ata_active, App::blogWorkspace()::NS_BOOL);
+                $settings->put('on_post', $ata_on_post, App::blogWorkspace()::NS_BOOL);
+                $settings->put('on_page', $ata_on_page, App::blogWorkspace()::NS_BOOL);
+                $settings->put('before_content', $ata_before_content, App::blogWorkspace()::NS_BOOL);
+                $settings->put('after_content', $ata_after_content, App::blogWorkspace()::NS_BOOL);
+                $settings->put('style', $ata_style, App::blogWorkspace()::NS_STRING);
+                $settings->put('prefix', $ata_prefix, App::blogWorkspace()::NS_STRING);
+                $settings->put('suffix', $ata_suffix, App::blogWorkspace()::NS_STRING);
 
                 App::blog()->triggerBlog();
 
                 Notices::addSuccessNotice(__('Settings have been successfully updated.'));
-                dcCore::app()->adminurl->redirect('admin.plugin.' . My::id());
+                My::redirect();
             } catch (Exception $e) {
-                dcCore::app()->error->add($e->getMessage());
+                App::error()->add($e->getMessage());
             }
         }
 
@@ -136,7 +134,7 @@ class Manage extends Process
         // Form
         echo
         (new Form('addtoany_params'))
-            ->action(dcCore::app()->admin->getPageURL())
+            ->action(App::backend()->getPageURL())
             ->method('post')
             ->fields([
                 (new Para())->items([

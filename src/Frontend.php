@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Dotclear\Plugin\addToAny;
 
-use dcCore;
+use Dotclear\App;
 use Dotclear\Core\Process;
 
 class Frontend extends Process
@@ -36,14 +36,14 @@ class Frontend extends Process
             return false;
         }
 
-        dcCore::app()->addBehaviors([
+        App::behavior()->addBehaviors([
             'publicHeadContent' => FrontendBehaviors::publicHeadContent(...),
 
             'publicEntryBeforeContent' => FrontendBehaviors::publicEntryBeforeContent(...),
             'publicEntryAfterContent'  => FrontendBehaviors::publicEntryAfterContent(...),
         ]);
 
-        dcCore::app()->tpl->addValue('AddToAny', FrontendTemplate::tplAddToAny(...));
+        App::frontend()->template()->addValue('AddToAny', FrontendTemplate::tplAddToAny(...));
 
         return true;
     }
