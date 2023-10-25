@@ -14,7 +14,7 @@ $this->registerModule(
     'AddToAny',
     'Add AddToAny sharing tool to your posts and pages',
     'Franck Paul',
-    '3.0',
+    '4.0',
     [
         'requires'    => [['core', '2.28']],
         'permissions' => 'My',
