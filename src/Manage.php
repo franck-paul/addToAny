@@ -69,7 +69,7 @@ class Manage extends Process
             }
         }
 
-        if (!empty($_POST)) {
+        if ($_POST !== []) {
             try {
                 $ata_active         = !empty($_POST['ata_active']);
                 $ata_on_post        = !empty($_POST['ata_on_post']);

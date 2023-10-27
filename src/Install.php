@@ -42,8 +42,8 @@ class Install extends Process
             $settings->put('style', '', App::blogWorkspace()::NS_STRING, 'AddToAny sharing tool style', false, true);
             $settings->put('prefix', '', App::blogWorkspace()::NS_STRING, 'AddToAny sharing tool prefix text', false, true);
             $settings->put('suffix', '', App::blogWorkspace()::NS_STRING, 'AddToAny sharing tool suffix text', false, true);
-        } catch (Exception $e) {
-            App::error()->add($e->getMessage());
+        } catch (Exception $exception) {
+            App::error()->add($exception->getMessage());
         }
 
         return true;
