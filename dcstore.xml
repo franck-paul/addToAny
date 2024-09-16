@@ -1,10 +1,10 @@
 <modules xmlns:da="http://dotaddict.org/da/">
   <module id="addToAny">
     <name>AddToAny</name>
-    <version>4.1</version>
+    <version>4.2</version>
     <author>Franck Paul</author>
     <desc>Add AddToAny sharing tool to your posts and pages</desc>
-    <file>https://github.com/franck-paul/addToAny/releases/download/4.1/plugin-addToAny-4.1.zip</file>
+    <file>https://github.com/franck-paul/addToAny/releases/download/4.2/plugin-addToAny-4.2.zip</file>
     <da:dcmin>2.28</da:dcmin>
     <da:details>https://open-time.net/?q=addToAny</da:details>
     <da:support>https://github.com/franck-paul/addToAny</da:support>
