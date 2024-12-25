@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @brief addToAny, a plugin for Dotclear 2
  *
@@ -74,7 +75,7 @@ class FrontendBehaviors
     {
         $ret = '<p class="a2a">' . ($prefix !== null ? $prefix . ' ' : '') .
         '<a class="a2a_dd" href="https://www.addtoany.com/share_save">' . "\n" .
-        '<img src="' . urldecode(App::blog()->getPF('addToAny/img/favicon.png')) . '" alt="' . __('Share') . '">' . "\n" .
+        '<img src="' . urldecode((string) App::blog()->getPF('addToAny/img/favicon.png')) . '" alt="' . __('Share') . '">' . "\n" .
             '</a>' . ($suffix !== null ? ' ' . $suffix : '') . '</p>' . "\n";
         if ($first) {
             $ret .= '<script>' . "\n" .
