@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @brief addToAny, a plugin for Dotclear 2
  *
@@ -21,8 +22,6 @@ class FrontendTemplate
 {
     /**
      * @param      array<string, mixed>|\ArrayObject<string, mixed>  $attr      The attribute
-     *
-     * @return     string
      */
     public static function tplAddToAny(array|ArrayObject $attr): string
     {

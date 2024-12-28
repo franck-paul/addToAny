@@ -24,17 +24,15 @@ class FrontendBehaviors
     public static function publicEntryBeforeContent(): string
     {
         $settings = My::settings();
-        if ($settings->active && ((App::frontend()->context()->posts->post_type == 'post' && $settings->on_post) || (App::frontend()->context()->posts->post_type == 'page' && $settings->on_page))) {
-            if ($settings->before_content) {
-                echo self::addToAny(
-                    App::frontend()->context()->posts->getURL(),
-                    App::frontend()->context()->posts->post_title,
-                    !self::$a2a_loaded,
-                    $settings->prefix,
-                    $settings->suffix
-                );
-                self::$a2a_loaded = true;
-            }
+        if ($settings->active && (App::frontend()->context()->posts->post_type == 'post' && $settings->on_post || App::frontend()->context()->posts->post_type == 'page' && $settings->on_page) && $settings->before_content) {
+            echo self::addToAny(
+                App::frontend()->context()->posts->getURL(),
+                App::frontend()->context()->posts->post_title,
+                !self::$a2a_loaded,
+                $settings->prefix,
+                $settings->suffix
+            );
+            self::$a2a_loaded = true;
         }
 
         return '';
@@ -43,17 +41,15 @@ class FrontendBehaviors
     public static function publicEntryAfterContent(): string
     {
         $settings = My::settings();
-        if ($settings->active && ((App::frontend()->context()->posts->post_type == 'post' && $settings->on_post) || (App::frontend()->context()->posts->post_type == 'page' && $settings->on_page))) {
-            if ($settings->after_content) {
-                echo self::addToAny(
-                    App::frontend()->context()->posts->getURL(),
-                    App::frontend()->context()->posts->post_title,
-                    !self::$a2a_loaded,
-                    $settings->prefix,
-                    $settings->suffix
-                );
-                self::$a2a_loaded = true;
-            }
+        if ($settings->active && (App::frontend()->context()->posts->post_type == 'post' && $settings->on_post || App::frontend()->context()->posts->post_type == 'page' && $settings->on_page) && $settings->after_content) {
+            echo self::addToAny(
+                App::frontend()->context()->posts->getURL(),
+                App::frontend()->context()->posts->post_title,
+                !self::$a2a_loaded,
+                $settings->prefix,
+                $settings->suffix
+            );
+            self::$a2a_loaded = true;
         }
 
         return '';
