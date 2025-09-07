@@ -15,9 +15,9 @@ $this->registerModule(
     'AddToAny',
     'Add AddToAny sharing tool to your posts and pages',
     'Franck Paul',
-    '4.2',
+    '5.0',
     [
-        'date'        => '2003-08-13T13:42:00+0100',
+        'date'        => '2025-09-07T18:39:53+0200',
         'requires'    => [['core', '2.36']],
         'permissions' => 'My',
         'type'        => 'plugin',
