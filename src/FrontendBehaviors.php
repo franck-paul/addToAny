@@ -8,7 +8,7 @@
  *
  * @author Franck Paul and contributors
  *
- * @copyright Franck Paul carnet.franck.paul@gmail.com
+ * @copyright Franck Paul contact@open-time.net
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
 declare(strict_types=1);
@@ -16,6 +16,7 @@ declare(strict_types=1);
 namespace Dotclear\Plugin\addToAny;
 
 use Dotclear\App;
+use Dotclear\Database\MetaRecord;
 
 class FrontendBehaviors
 {
@@ -23,16 +24,27 @@ class FrontendBehaviors
 
     public static function publicEntryBeforeContent(): string
     {
+        // Variable data helpers
+        $_Str = fn (mixed $var, string $default = ''): string => $var !== null && is_string($val = $var) ? $val : $default;
+
         $settings = My::settings();
-        if ($settings->active && (App::frontend()->context()->posts->post_type == 'post' && $settings->on_post || App::frontend()->context()->posts->post_type == 'page' && $settings->on_page) && $settings->before_content) {
-            echo self::addToAny(
-                App::frontend()->context()->posts->getURL(),
-                App::frontend()->context()->posts->post_title,
-                !self::$a2a_loaded,
-                $settings->prefix,
-                $settings->suffix
-            );
-            self::$a2a_loaded = true;
+
+        if ($settings->active && App::frontend()->context()->posts instanceof MetaRecord) {
+            $post_type = is_string($post_type = App::frontend()->context()->posts->post_type) ? $post_type : '';
+            if (($post_type === 'post' && $settings->on_post || $post_type === 'page' && $settings->on_page) && $settings->before_content) {
+                $post_url = is_string($post_url = App::frontend()->context()->posts->getURL()) ? $post_url : '';
+                if ($post_url !== '') {
+                    $post_title = is_string($post_title = App::frontend()->context()->posts->post_title) ? $post_title : '';
+                    echo self::addToAny(
+                        $post_url,
+                        $post_title,
+                        !self::$a2a_loaded,
+                        $_Str($settings->prefix),
+                        $_Str($settings->suffix)
+                    );
+                    self::$a2a_loaded = true;
+                }
+            }
         }
 
         return '';
@@ -40,16 +52,27 @@ class FrontendBehaviors
 
     public static function publicEntryAfterContent(): string
     {
+        // Variable data helpers
+        $_Str = fn (mixed $var, string $default = ''): string => $var !== null && is_string($val = $var) ? $val : $default;
+
         $settings = My::settings();
-        if ($settings->active && (App::frontend()->context()->posts->post_type == 'post' && $settings->on_post || App::frontend()->context()->posts->post_type == 'page' && $settings->on_page) && $settings->after_content) {
-            echo self::addToAny(
-                App::frontend()->context()->posts->getURL(),
-                App::frontend()->context()->posts->post_title,
-                !self::$a2a_loaded,
-                $settings->prefix,
-                $settings->suffix
-            );
-            self::$a2a_loaded = true;
+
+        if ($settings->active && App::frontend()->context()->posts instanceof MetaRecord) {
+            $post_type = is_string($post_type = App::frontend()->context()->posts->post_type) ? $post_type : '';
+            if (($post_type === 'post' && $settings->on_post || $post_type === 'page' && $settings->on_page) && $settings->after_content) {
+                $post_url = is_string($post_url = App::frontend()->context()->posts->getURL()) ? $post_url : '';
+                if ($post_url !== '') {
+                    $post_title = is_string($post_title = App::frontend()->context()->posts->post_title) ? $post_title : '';
+                    echo self::addToAny(
+                        $post_url,
+                        $post_title,
+                        !self::$a2a_loaded,
+                        $_Str($settings->prefix),
+                        $_Str($settings->suffix)
+                    );
+                    self::$a2a_loaded = true;
+                }
+            }
         }
 
         return '';
@@ -57,9 +80,16 @@ class FrontendBehaviors
 
     public static function publicHeadContent(): string
     {
+        // Variable data helpers
+        $_Str = fn (mixed $var, string $default = ''): string => $var !== null && is_string($val = $var) ? $val : $default;
+
         $settings = My::settings();
-        if (($settings->active) && ($settings->style !== null)) {
-            echo '<style type="text/css">' . "\n" . self::customStyle() . "</style>\n";
+
+        if ($settings->active) {
+            $style = $_Str($settings->style);
+            if ($style !== '') {
+                echo '<style type="text/css">' . "\n" . $style . "\n</style>\n";
+            }
         }
 
         return '';
@@ -91,15 +121,5 @@ class FrontendBehaviors
         }
 
         return $ret;
-    }
-
-    public static function customStyle(): string
-    {
-        $s = My::settings()->style;
-        if ($s === null) {
-            return '';
-        }
-
-        return $s . "\n";
     }
 }

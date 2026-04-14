@@ -8,7 +8,7 @@
  *
  * @author Franck Paul and contributors
  *
- * @copyright Franck Paul carnet.franck.paul@gmail.com
+ * @copyright Franck Paul contact@open-time.net
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
 declare(strict_types=1);
@@ -71,15 +71,19 @@ class Manage
         }
 
         if ($_POST !== []) {
+            // Post data helpers
+            $_Bool = fn (string $name): bool => !empty($_POST[$name]);
+            $_Str  = fn (string $name, string $default = ''): string => isset($_POST[$name]) && is_string($val = $_POST[$name]) ? $val : $default;
+
             try {
-                $ata_active         = !empty($_POST['ata_active']);
-                $ata_on_post        = !empty($_POST['ata_on_post']);
-                $ata_on_page        = !empty($_POST['ata_on_page']);
-                $ata_before_content = !empty($_POST['ata_before_content']);
-                $ata_after_content  = !empty($_POST['ata_after_content']);
-                $ata_style          = trim((string) $_POST['ata_style']);
-                $ata_prefix         = trim(Html::escapeHTML($_POST['ata_prefix']));
-                $ata_suffix         = trim(Html::escapeHTML($_POST['ata_suffix']));
+                $ata_active         = $_Bool('ata_active');
+                $ata_on_post        = $_Bool('ata_on_post');
+                $ata_on_page        = $_Bool('ata_on_page');
+                $ata_before_content = $_Bool('ata_before_content');
+                $ata_after_content  = $_Bool('ata_after_content');
+                $ata_style          = trim($_Str('ata_style'));
+                $ata_prefix         = trim(Html::escapeHTML($_Str('ata_prefix')));
+                $ata_suffix         = trim(Html::escapeHTML($_Str('ata_suffix')));
 
                 // Everything's fine, save options
                 $settings->put('active', $ata_active, App::blogWorkspace()::NS_BOOL);
@@ -112,15 +116,20 @@ class Manage
             return;
         }
 
-        $settings           = My::settings();
-        $ata_active         = (bool) $settings->active;
-        $ata_on_post        = (bool) $settings->on_post;
-        $ata_on_page        = (bool) $settings->on_page;
-        $ata_before_content = (bool) $settings->before_content;
-        $ata_after_content  = (bool) $settings->after_content;
-        $ata_style          = $settings->style;
-        $ata_prefix         = $settings->prefix;
-        $ata_suffix         = $settings->suffix;
+        // Variable data helpers
+        $_Bool = fn (mixed $var): bool => (bool) $var;
+        $_Str  = fn (mixed $var, string $default = ''): string => $var !== null && is_string($val = $var) ? $val : $default;
+
+        $settings = My::settings();
+
+        $ata_active         = $_Bool($settings->active);
+        $ata_on_post        = $_Bool($settings->on_post);
+        $ata_on_page        = $_Bool($settings->on_page);
+        $ata_before_content = $_Bool($settings->before_content);
+        $ata_after_content  = $_Bool($settings->after_content);
+        $ata_style          = $_Str($settings->style);
+        $ata_prefix         = $_Str($settings->prefix);
+        $ata_suffix         = $_Str($settings->suffix);
 
         App::backend()->page()->openModule(My::name());
 
