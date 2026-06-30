@@ -36,7 +36,7 @@ class FrontendTemplate
             $f        = App::frontend()->template()->getFilters($attr);
             $post_url = is_string($post_url = App::frontend()->context()->posts->getURL()) ? $post_url : '';
             if ($post_url !== '') {
-                $post_title = is_string($post_title = App::frontend()->context()->posts->post_title) ? $post_title : '';
+                $post_title = App::frontend()->context()->posts->strField('post_title');
                 $url        = sprintf($f, $post_url);
                 $ret        = FrontendBehaviors::addToAny(
                     $url,

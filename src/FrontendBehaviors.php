@@ -30,11 +30,11 @@ class FrontendBehaviors
         $settings = My::settings();
 
         if ($settings->active && App::frontend()->context()->posts instanceof MetaRecord) {
-            $post_type = is_string($post_type = App::frontend()->context()->posts->post_type) ? $post_type : '';
+            $post_type = App::frontend()->context()->posts->strField('post_type');
             if (($post_type === 'post' && $settings->on_post || $post_type === 'page' && $settings->on_page) && $settings->before_content) {
                 $post_url = is_string($post_url = App::frontend()->context()->posts->getURL()) ? $post_url : '';
                 if ($post_url !== '') {
-                    $post_title = is_string($post_title = App::frontend()->context()->posts->post_title) ? $post_title : '';
+                    $post_title = App::frontend()->context()->posts->strField('post_title');
                     echo self::addToAny(
                         $post_url,
                         $post_title,
@@ -58,11 +58,11 @@ class FrontendBehaviors
         $settings = My::settings();
 
         if ($settings->active && App::frontend()->context()->posts instanceof MetaRecord) {
-            $post_type = is_string($post_type = App::frontend()->context()->posts->post_type) ? $post_type : '';
+            $post_type = App::frontend()->context()->posts->strField('post_type');
             if (($post_type === 'post' && $settings->on_post || $post_type === 'page' && $settings->on_page) && $settings->after_content) {
                 $post_url = is_string($post_url = App::frontend()->context()->posts->getURL()) ? $post_url : '';
                 if ($post_url !== '') {
-                    $post_title = is_string($post_title = App::frontend()->context()->posts->post_title) ? $post_title : '';
+                    $post_title = App::frontend()->context()->posts->strField('post_title');
                     echo self::addToAny(
                         $post_url,
                         $post_title,
