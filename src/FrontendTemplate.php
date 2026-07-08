@@ -26,13 +26,10 @@ class FrontendTemplate
      */
     public static function tplAddToAny(array|ArrayObject $attr): string
     {
-        // Variable data helpers
-        $_Str = fn (mixed $var, string $default = ''): string => $var !== null && is_string($val = $var) ? $val : $default;
-
         $ret      = '';
         $settings = My::settings();
 
-        if ($settings->active && App::frontend()->context()->posts instanceof MetaRecord) {
+        if ($settings->getBool('active') && App::frontend()->context()->posts instanceof MetaRecord) {
             $f        = App::frontend()->template()->getFilters($attr);
             $post_url = is_string($post_url = App::frontend()->context()->posts->getURL()) ? $post_url : '';
             if ($post_url !== '') {
@@ -42,8 +39,8 @@ class FrontendTemplate
                     $url,
                     $post_title,
                     !FrontendBehaviors::$a2a_loaded,
-                    $_Str($settings->prefix),
-                    $_Str($settings->suffix)
+                    $settings->getStr('prefix', false),
+                    $settings->getStr('suffix', false)
                 );
                 FrontendBehaviors::$a2a_loaded = true;
             }

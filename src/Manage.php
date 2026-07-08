@@ -50,7 +50,7 @@ class Manage
         }
 
         $settings = My::settings();
-        if (is_null($settings->active)) {
+        if (is_null($settings->getBool('active'))) {
             try {
                 // Add default settings values if necessary
 
@@ -116,20 +116,16 @@ class Manage
             return;
         }
 
-        // Variable data helpers
-        $_Bool = fn (mixed $var): bool => (bool) $var;
-        $_Str  = fn (mixed $var, string $default = ''): string => $var !== null && is_string($val = $var) ? $val : $default;
-
         $settings = My::settings();
 
-        $ata_active         = $_Bool($settings->active);
-        $ata_on_post        = $_Bool($settings->on_post);
-        $ata_on_page        = $_Bool($settings->on_page);
-        $ata_before_content = $_Bool($settings->before_content);
-        $ata_after_content  = $_Bool($settings->after_content);
-        $ata_style          = $_Str($settings->style);
-        $ata_prefix         = $_Str($settings->prefix);
-        $ata_suffix         = $_Str($settings->suffix);
+        $ata_active         = $settings->getBool('active', false);
+        $ata_on_post        = $settings->getBool('on_post', false);
+        $ata_on_page        = $settings->getBool('on_page', false);
+        $ata_before_content = $settings->getBool('before_content', false);
+        $ata_after_content  = $settings->getBool('after_content', false);
+        $ata_style          = $settings->getStr('style', false);
+        $ata_prefix         = $settings->getStr('prefix', false);
+        $ata_suffix         = $settings->getStr('suffix', false);
 
         App::backend()->page()->openModule(My::name());
 

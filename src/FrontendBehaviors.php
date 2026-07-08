@@ -24,14 +24,14 @@ class FrontendBehaviors
 
     public static function publicEntryBeforeContent(): string
     {
-        // Variable data helpers
-        $_Str = fn (mixed $var, string $default = ''): string => $var !== null && is_string($val = $var) ? $val : $default;
-
         $settings = My::settings();
 
-        if ($settings->active && App::frontend()->context()->posts instanceof MetaRecord) {
+        if ($settings->getBool('active') && App::frontend()->context()->posts instanceof MetaRecord) {
             $post_type = App::frontend()->context()->posts->strField('post_type');
-            if (($post_type === 'post' && $settings->on_post || $post_type === 'page' && $settings->on_page) && $settings->before_content) {
+            if (($post_type   === 'post' && $settings->getBool('on_post')
+                || $post_type === 'page' && $settings->getBool('on_page'))
+                && $settings->getBool('before_content')
+            ) {
                 $post_url = is_string($post_url = App::frontend()->context()->posts->getURL()) ? $post_url : '';
                 if ($post_url !== '') {
                     $post_title = App::frontend()->context()->posts->strField('post_title');
@@ -39,8 +39,8 @@ class FrontendBehaviors
                         $post_url,
                         $post_title,
                         !self::$a2a_loaded,
-                        $_Str($settings->prefix),
-                        $_Str($settings->suffix)
+                        $settings->getStr('prefix', false),
+                        $settings->getStr('suffix', false)
                     );
                     self::$a2a_loaded = true;
                 }
@@ -52,14 +52,14 @@ class FrontendBehaviors
 
     public static function publicEntryAfterContent(): string
     {
-        // Variable data helpers
-        $_Str = fn (mixed $var, string $default = ''): string => $var !== null && is_string($val = $var) ? $val : $default;
-
         $settings = My::settings();
 
-        if ($settings->active && App::frontend()->context()->posts instanceof MetaRecord) {
+        if ($settings->getBool('active') && App::frontend()->context()->posts instanceof MetaRecord) {
             $post_type = App::frontend()->context()->posts->strField('post_type');
-            if (($post_type === 'post' && $settings->on_post || $post_type === 'page' && $settings->on_page) && $settings->after_content) {
+            if (($post_type   === 'post' && $settings->getBool('on_post')
+                || $post_type === 'page' && $settings->getBool('on_page'))
+                && $settings->getBool('after_content')
+            ) {
                 $post_url = is_string($post_url = App::frontend()->context()->posts->getURL()) ? $post_url : '';
                 if ($post_url !== '') {
                     $post_title = App::frontend()->context()->posts->strField('post_title');
@@ -67,8 +67,8 @@ class FrontendBehaviors
                         $post_url,
                         $post_title,
                         !self::$a2a_loaded,
-                        $_Str($settings->prefix),
-                        $_Str($settings->suffix)
+                        $settings->getStr('prefix', false),
+                        $settings->getStr('suffix', false)
                     );
                     self::$a2a_loaded = true;
                 }
@@ -80,13 +80,10 @@ class FrontendBehaviors
 
     public static function publicHeadContent(): string
     {
-        // Variable data helpers
-        $_Str = fn (mixed $var, string $default = ''): string => $var !== null && is_string($val = $var) ? $val : $default;
-
         $settings = My::settings();
 
-        if ($settings->active) {
-            $style = $_Str($settings->style);
+        if ($settings->getBool('active')) {
+            $style = $settings->getStr('style', false);
             if ($style !== '') {
                 echo '<style type="text/css">' . "\n" . $style . "\n</style>\n";
             }
