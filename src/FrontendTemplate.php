@@ -31,7 +31,7 @@ class FrontendTemplate
 
         if ($settings->getBool('active') && App::frontend()->context()->posts instanceof MetaRecord) {
             $f        = App::frontend()->template()->getFilters($attr);
-            $post_url = is_string($post_url = App::frontend()->context()->posts->getURL()) ? $post_url : '';
+            $post_url = App::frontend()->context()->posts->getURL();
             if ($post_url !== '') {
                 $post_title = App::frontend()->context()->posts->strField('post_title');
                 $url        = sprintf($f, $post_url);

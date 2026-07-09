@@ -32,7 +32,7 @@ class FrontendBehaviors
                 || $post_type === 'page' && $settings->getBool('on_page'))
                 && $settings->getBool('before_content')
             ) {
-                $post_url = is_string($post_url = App::frontend()->context()->posts->getURL()) ? $post_url : '';
+                $post_url = App::frontend()->context()->posts->getURL();
                 if ($post_url !== '') {
                     $post_title = App::frontend()->context()->posts->strField('post_title');
                     echo self::addToAny(
@@ -60,7 +60,7 @@ class FrontendBehaviors
                 || $post_type === 'page' && $settings->getBool('on_page'))
                 && $settings->getBool('after_content')
             ) {
-                $post_url = is_string($post_url = App::frontend()->context()->posts->getURL()) ? $post_url : '';
+                $post_url = App::frontend()->context()->posts->getURL();
                 if ($post_url !== '') {
                     $post_title = App::frontend()->context()->posts->strField('post_title');
                     echo self::addToAny(
