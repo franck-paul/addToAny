@@ -20,6 +20,7 @@ use Dotclear\Helper\Html\Form\Checkbox;
 use Dotclear\Helper\Html\Form\Form;
 use Dotclear\Helper\Html\Form\Input;
 use Dotclear\Helper\Html\Form\Label;
+use Dotclear\Helper\Html\Form\Note;
 use Dotclear\Helper\Html\Form\Para;
 use Dotclear\Helper\Html\Form\Submit;
 use Dotclear\Helper\Html\Form\Text;
@@ -186,9 +187,9 @@ class Manage
                         ->required(true)
                         ->label((new Label(__('AddToAny sharing tool text prefix:'), Label::OUTSIDE_TEXT_BEFORE))),
                 ]),
-                (new Para())->class('form-note')->items([
-                    (new Text(null, __('This will be inserted before link.'))),
-                ]),
+                (new Note())
+                    ->class('form-note')
+                    ->text(__('This will be inserted before link.')),
                 (new Para())->items([
                     (new Input('ata_suffix'))
                         ->size(30)
@@ -197,12 +198,12 @@ class Manage
                         ->required(true)
                         ->label((new Label(__('AddToAny sharing tool text suffix:'), Label::OUTSIDE_TEXT_BEFORE))),
                 ]),
-                (new Para())->class('form-note')->items([
-                    (new Text(null, __('This will be inserted after link.'))),
-                ]),
-                (new Para())->class('info')->items([
-                    (new Text(null, __('The link will be inserted as <code>&lt;p class="a2a"&gt;&lt;a …&gt;&lt;img …&gt;&lt;/a&gt;&lt;/p&gt;</code> form.') . ' ' . __('See <a href="https://www.addtoany.com/">AddToAny web site</a> for more information.'))),
-                ]),
+                (new Note())
+                    ->class('form-note')
+                    ->text(__('This will be inserted after link.')),
+                (new Note())
+                    ->class('info')
+                    ->text(__('The link will be inserted as <code>&lt;p class="a2a"&gt;&lt;a …&gt;&lt;img …&gt;&lt;/a&gt;&lt;/p&gt;</code> form.') . ' ' . __('See <a href="https://www.addtoany.com/">AddToAny web site</a> for more information.')),
                 // Submit
                 (new Para())->items([
                     (new Submit(['frmsubmit']))
