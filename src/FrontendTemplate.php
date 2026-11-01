@@ -29,7 +29,7 @@ class FrontendTemplate
         $ret      = '';
         $settings = My::settings();
 
-        if ($settings->getBool('active') && App::frontend()->context()->posts instanceof MetaRecord) {
+        if ($settings->getBool('active', false) && App::frontend()->context()->posts instanceof MetaRecord) {
             $f        = App::frontend()->template()->getFilters($attr);
             $post_url = App::frontend()->context()->posts->getURL();
             if ($post_url !== '') {

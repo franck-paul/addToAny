@@ -26,11 +26,11 @@ class FrontendBehaviors
     {
         $settings = My::settings();
 
-        if ($settings->getBool('active') && App::frontend()->context()->posts instanceof MetaRecord) {
+        if ($settings->getBool('active', false) && App::frontend()->context()->posts instanceof MetaRecord) {
             $post_type = App::frontend()->context()->posts->strField('post_type');
-            if (($post_type   === 'post' && $settings->getBool('on_post')
-                || $post_type === 'page' && $settings->getBool('on_page'))
-                && $settings->getBool('before_content')
+            if (($post_type   === 'post' && $settings->getBool('on_post', false)
+                || $post_type === 'page' && $settings->getBool('on_page', false))
+                && $settings->getBool('before_content', false)
             ) {
                 $post_url = App::frontend()->context()->posts->getURL();
                 if ($post_url !== '') {
@@ -54,11 +54,11 @@ class FrontendBehaviors
     {
         $settings = My::settings();
 
-        if ($settings->getBool('active') && App::frontend()->context()->posts instanceof MetaRecord) {
+        if ($settings->getBool('active', false) && App::frontend()->context()->posts instanceof MetaRecord) {
             $post_type = App::frontend()->context()->posts->strField('post_type');
-            if (($post_type   === 'post' && $settings->getBool('on_post')
-                || $post_type === 'page' && $settings->getBool('on_page'))
-                && $settings->getBool('after_content')
+            if (($post_type   === 'post' && $settings->getBool('on_post', false)
+                || $post_type === 'page' && $settings->getBool('on_page', false))
+                && $settings->getBool('after_content', false)
             ) {
                 $post_url = App::frontend()->context()->posts->getURL();
                 if ($post_url !== '') {
@@ -82,7 +82,7 @@ class FrontendBehaviors
     {
         $settings = My::settings();
 
-        if ($settings->getBool('active')) {
+        if ($settings->getBool('active', false)) {
             $style = $settings->getStr('style', false);
             if ($style !== '') {
                 echo '<style type="text/css">' . "\n" . $style . "\n</style>\n";
