@@ -18,9 +18,9 @@ if (isset($this) && is_object($this) && method_exists($this, 'registerModule') &
         'AddToAny',
         'Add AddToAny sharing tool to your posts and pages',
         'Franck Paul',
-        '6.0',
+        '6.1',
         [
-            'date'        => '2026-08-03T09:44:07+0200',
+            'date'        => '2026-11-07T16:39:54+0100',
             'requires'    => [['core', '2.39']],
             'permissions' => 'My',
             'type'        => 'plugin',
