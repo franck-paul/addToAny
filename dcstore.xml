@@ -1,11 +1,11 @@
 <modules xmlns:da="http://dotaddict.org/da/">
   <module id="addToAny">
     <name>AddToAny</name>
-    <version>6.0</version>
+    <version>6.1</version>
     <author>Franck Paul</author>
     <desc>Add AddToAny sharing tool to your posts and pages</desc>
-    <date>2026-08-03T09:44:07+0200</date>
-    <file>https://github.com/franck-paul/addToAny/releases/download/6.0/plugin-addToAny-6.0.zip</file>
+    <date>2026-11-07T16:39:54+0100</date>
+    <file>https://github.com/franck-paul/addToAny/releases/download/6.1/plugin-addToAny-6.1.zip</file>
     <da:dcmin>2.39</da:dcmin>
     <da:details>https://dotclear.org/plugin/detail/addToAny</da:details>
     <da:support>https://github.com/franck-paul/addToAny</da:support>
